@@ -7,7 +7,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'cancan'
 gem 'state_machine'
-
+gem 'role_model'
 
 group :production do
   gem 'unicorn'

@@ -103,6 +103,7 @@ GEM
     rake (10.0.4)
     rdoc (3.12.2)
       json (~> 1.4)
+    role_model (0.8.1)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -162,6 +163,7 @@ DEPENDENCIES
   factory_girl (= 2.0.2)
   jquery-rails
   rails (= 3.2.13)
+  role_model
   rspec
   rspec-rails
   sass-rails (~> 3.2.3)

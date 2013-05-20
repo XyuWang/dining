@@ -1,0 +1,63 @@
+    <div class="container">
+
+      <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="/">Project</a>
+            <div class="nav-collapse">
+              <ul class="nav">
+                <li><a href="/">Home</a></li>
+                <li><%= link_to "Products", products_path %></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+            </div><!--/.nav-collapse -->
+            <div class="container">
+              <ul class="nav pull-right">
+                <% if user_signed_in? %>
+                  <% if current_user.has_any_role? :admin, :manufacturer, :designer%>
+                    <li class="divider-vertical"></li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage<b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                        <% if current_user.storer? %>
+                          <li>  <%= link_to "商家页面", "" , class:"span"%> </li>
+                        <% end %>
+                        <% if current_user.admin? %>
+                          <li> <%= link_to "管理员页面", admin_path, class:"span" %> </li>
+                        <% end %>
+                      </ul>
+                    </li>
+                  <% end %>
+                  <li><%= link_to "My Cart ()", "" %></li>
+
+                  <li class="divider-vertical"></li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">MyOrders<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Ordered</a></li>
+                      <li><a href="#">Delivered</a></li>
+                      <li><%=link_to "All", ""%></li>
+                    </ul>
+                  </li>
+                  <li> <%= link_to "Profile", ""%></li>
+                  <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+                <% else %>
+                  <li> <%= link_to "Sign In", new_user_session_path%></li>
+                  <li> <%= link_to "Register", new_user_registration_path%> </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <br />
+      <br />
+
+
+

@@ -1,4 +1,6 @@
 Dining::Application.routes.draw do
+  get "admin", to: "admin::admin#show"
+
   root to: "home#show"
 
   resources :stores, only: [:show]

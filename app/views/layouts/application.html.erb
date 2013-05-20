@@ -1,14 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Dining</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Dining</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-<%= yield %>
+    <%= render "layouts/navbar" %>
 
-</body>
+    <div class="container">
+      <!-- alert and notice begin -->
+      <% if flash[:alert].present? %>
+        <div class="alert alert-error">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <h4></h4>    <strong><%= flash[:alert]%></strong>
+        </div>
+      <% end %>
+      <% if flash[:notice].present? %>
+        <div class="alert alert-success">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <h4></h4>    <strong><%= flash[:notice]%></strong>
+        </div>
+      <% end %>
+      <!-- alert and notice end-->
+    </div>
+
+    <%= yield %>
+
+    <div class="container">
+      <div class="footer">
+        <p align="center">
+          © Company 2013
+        </p>
+      </div>
+    </div>
+
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  </body>
 </html>
