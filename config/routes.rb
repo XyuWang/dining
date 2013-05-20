@@ -1,4 +1,10 @@
 Dining::Application.routes.draw do
+  root to: "home#show"
+
+  resources :stores, only: [:show]
+  resource :products, only: [:index, :show]
+
+  get "cart/show"
   devise_for :users
 
   # The priority is based upon order of creation:
