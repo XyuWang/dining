@@ -1,7 +1,18 @@
 Dining::Application.routes.draw do
-  get "admin", to: "admin::admin#show"
+
+  get "storer/show"
 
   root to: "home#show"
+  
+  get "admin", to: "admin::admin#show"
+  namespace "admin" do
+    resources :storers, only: [:index, :create, :destroy]
+  end
+  
+  get "storer", to: "storer::storer#show"
+  namespace "storer" do
+    resources :products
+  end
 
   resources :stores, only: [:show]
   resource :products, only: [:index, :show]

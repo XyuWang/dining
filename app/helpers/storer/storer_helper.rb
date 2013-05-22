@@ -1,0 +1,2 @@
+module Storer::StorerHelper
+end

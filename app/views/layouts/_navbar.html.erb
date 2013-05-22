@@ -11,18 +11,18 @@
             <a class="brand" href="/">Project</a>
             <div class="nav-collapse">
               <ul class="nav">
-                <li><a href="/">Home</a></li>
-                <li><%= link_to "Products", products_path %></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="/">主页</a></li>
+                <li><%= link_to "商品", products_path %></li>
+                <li><a href="#contact">联系我们</a></li>
               </ul>
             </div><!--/.nav-collapse -->
             <div class="container">
               <ul class="nav pull-right">
                 <% if user_signed_in? %>
-                  <% if current_user.has_any_role? :admin, :manufacturer, :designer%>
+                  <% if current_user.has_any_role? :admin, :storer%>
                     <li class="divider-vertical"></li>
                     <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage<b class="caret"></b></a>
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">管理<b class="caret"></b></a>
                       <ul class="dropdown-menu">
                         <% if current_user.storer? %>
                           <li>  <%= link_to "商家页面", "" , class:"span"%> </li>
@@ -33,22 +33,13 @@
                       </ul>
                     </li>
                   <% end %>
-                  <li><%= link_to "My Cart ()", "" %></li>
-
-                  <li class="divider-vertical"></li>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">MyOrders<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Ordered</a></li>
-                      <li><a href="#">Delivered</a></li>
-                      <li><%=link_to "All", ""%></li>
-                    </ul>
-                  </li>
-                  <li> <%= link_to "Profile", ""%></li>
-                  <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+                  <li><%= link_to "购物车 (0)", "" %></li>
+                  <li><%=link_to "我的订单", ""%></li>
+                  <li><%= link_to "账户设置", ""%></li>
+                  <li><%= link_to "退出", destroy_user_session_path, method: :delete %></li>
                 <% else %>
-                  <li> <%= link_to "Sign In", new_user_session_path%></li>
-                  <li> <%= link_to "Register", new_user_registration_path%> </li>
+                  <li> <%= link_to "登录", new_user_session_path%></li>
+                  <li> <%= link_to "注册", new_user_registration_path%> </li>
                 <% end %>
               </ul>
             </div>

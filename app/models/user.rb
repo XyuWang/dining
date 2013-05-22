@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   include RoleModel
   roles :admin, :storer
 
+  scope :storers, select { |user| user.storer?}
+
   has_one :store
   has_one :cart
 end
