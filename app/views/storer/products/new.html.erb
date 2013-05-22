@@ -1,0 +1,8 @@
+<div class="container">
+  <br />
+  <%= form_for @store.products.new, url: storer_products_path  do |f|%>
+    <%= f.text_field :title, placeholder: "请输入商品标题"%><br/>
+    <%= f.text_area :description, placeholder: "请输入商品描述"%><br/>
+    <%= f.submit "提交", class:"btn btn-large"%>
+  <% end %>
+</div>

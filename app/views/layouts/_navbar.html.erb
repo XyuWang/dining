@@ -25,7 +25,7 @@
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">管理<b class="caret"></b></a>
                       <ul class="dropdown-menu">
                         <% if current_user.storer? %>
-                          <li>  <%= link_to "商家页面", "" , class:"span"%> </li>
+                          <li>  <%= link_to "商家页面", storer_path , class:"span"%> </li>
                         <% end %>
                         <% if current_user.admin? %>
                           <li> <%= link_to "管理员页面", admin_path, class:"span" %> </li>

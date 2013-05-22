@@ -9,8 +9,9 @@ Dining::Application.routes.draw do
     resources :storers, only: [:index, :create, :destroy]
   end
   
-  get "storer", to: "storer::storer#show"
   namespace "storer" do
+    get "/", to: "storer#show"
+    put "/", to: "storer#update"
     resources :products
   end
 

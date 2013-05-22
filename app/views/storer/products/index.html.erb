@@ -1,0 +1,18 @@
+<div class="container">
+<%= link_to "增加产品", new_storer_product_path %>
+  <table class="table">
+    <caption>产品列表</caption>
+    <tr>
+      <th>名称</th>
+      <th>描述</th>
+      <th>销量</th>
+      <th>评分</th>
+    </tr>
+    <% @store.products.each do |product|%>
+      <td><%= product.title %></td>
+      <td><%= product.description %></td>
+      <td><%= %></td>
+      <td><%= %></td>
+    <% end %>
+  </table>
+</div>
