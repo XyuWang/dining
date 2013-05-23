@@ -1,0 +1,15 @@
+<div class="span3">
+  <div>
+    title:
+    <%= product.title %>
+  </div>
+  <div>
+    description:
+    <%= product.description %>
+  </div>
+  <div>
+    price:
+    <%= product.price %>
+  </div>
+  <%= link_to "来一份", cart_path(product_id: product), method: :post, class: "btn btn-small"%>
+</div>

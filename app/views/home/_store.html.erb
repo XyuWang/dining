@@ -1,0 +1,7 @@
+<div>
+  商店名称:
+  <%= store.name %> <br/>
+  <% store.products.each do |product|%>
+    <%= render "product", product: product%>
+  <% end %>
+</div>

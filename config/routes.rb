@@ -2,8 +2,10 @@ Dining::Application.routes.draw do
 
   get "storer/show"
 
+  resources :products, only: [:index, :show]
+
   root to: "home#show"
-  
+
   get "admin", to: "admin::admin#show"
   namespace "admin" do
     resources :storers, only: [:index, :create, :destroy]
@@ -16,9 +18,13 @@ Dining::Application.routes.draw do
   end
 
   resources :stores, only: [:show]
-  resource :products, only: [:index, :show]
 
-  get "cart/show"
+  resource :cart do
+    get "/", to: "cart#show"
+    post "/", to: "cart#add_product"
+    delete "/", to: "cart#remove_product"
+  end
+
   devise_for :users
 
   # The priority is based upon order of creation:

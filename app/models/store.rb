@@ -5,4 +5,8 @@ class Store < ActiveRecord::Base
 
   belongs_to :user
   has_many :products
+
+  def can_order?
+    true
+  end
 end
