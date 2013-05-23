@@ -32,7 +32,7 @@
                       </ul>
                     </li>
                   <% end %>
-                  <li><%= link_to "购物车 (0)", "/cart" %></li>
+                  <li><%= link_to "购物车 (#{CartDomain.get_products_number current_user})", "/cart" %></li>
                   <li><%=link_to "我的订单", ""%></li>
                   <li><%= link_to "账户设置", ""%></li>
                   <li><%= link_to "退出", destroy_user_session_path, method: :delete %></li>
@@ -48,6 +48,3 @@
       </div>
       <br />
       <br />
-
-
-

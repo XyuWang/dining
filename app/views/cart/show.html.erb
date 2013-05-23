@@ -10,9 +10,15 @@
       <tr>
         <td> <%= index + 1 %></td>
         <td> <%= line_item.product.title %></td>
-        <td> <%= line_item.quantity %></td>
+        <td> <%= number_field_tag :quantity, line_item.quantity, id: "quantity_#{line_item.id}" %></td>
         <td> <%= line_item.quantity * line_item.price %></td>
         <td><%= link_to "移除", cart_path(line_item_id: line_item), method: :delete, class: "btn"%></td>
+        <script>
+          $(document).ready(function(){
+            $("#<%= "quantity_#{line_item.id}"%>").change(function(){
+            });
+          });
+        </script>
       </tr>
     <% end %>
   </table>
