@@ -22,7 +22,10 @@
       </tr>
     <% end %>
   </table>
-  <div class="pull-right">
-    <%= link_to "结帐", "", class: "btn btn-large btn-primary"%>
+  <div class="checkout">
+    <%= form_tag orders_path, method: :post do %>
+      <%= text_field_tag :message,"", class: "span9", placeholder: "在这输入你的留言" %>
+      <%= submit_tag "下单", class: "btn btn-large btn-primary"%>
+  <% end %>
   </div>
 </div>
