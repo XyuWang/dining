@@ -7,10 +7,13 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = current_user.orders.new message: params[:message]
+    @order = current_user.orders.new message: params[:message], address: params[:address], phone: params[:phone], name: params[:name]
     @cart = current_user.cart
+    @order.store_id = @cart.store_id
 
-    @order.line_items = @cart.line_items
+    @cart.line_items.each do |l|
+      @order.line_items.new quantity: l.quantity, price: l.price, product_id: l.product_id
+    end
 
     if @order.save
       @cart.line_items.destroy_all

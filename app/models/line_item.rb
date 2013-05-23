@@ -1,7 +1,7 @@
 class LineItem < ActiveRecord::Base
-  attr_accessible :price, :product_id, :quantity, :referable_id, :referable_type
+  attr_accessible :price, :product_id, :quantity, :referable_type
 
-  validates :price, :product, :quantity, :referable, presence:true
+  validates :price, :product, :quantity, presence:true
   validates :price, numericality: {greater_than_or_equal_to: 0.01}
   validates :quantity, numericality: {greater_than_or_equal_to: 1}
 

@@ -20,11 +20,10 @@ Dining::Application.routes.draw do
   get "profile", to: "profile#show"
   put "profile", to: "profile#update"
 
-  resource :cart do
-    get "/", to: "cart#show"
-    post "/", to: "cart#add_product"
-    delete "/", to: "cart#remove_product"
-  end
+  get    "cart", to: "cart#show"
+  post   "cart", to: "cart#add_product"
+  put    "cart", to: "cart#update"
+  delete "cart", to: "cart#remove_product"
 
   devise_for :users
 

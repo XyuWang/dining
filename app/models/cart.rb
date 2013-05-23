@@ -1,5 +1,5 @@
 class Cart < ActiveRecord::Base
-  attr_accessible :user_id
+  attr_accessible :user_id, :store_id
 
   validates :user, presence: true
 
