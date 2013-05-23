@@ -11,7 +11,11 @@
         <td><%= index + 1 %></td>
         <td><%= order.line_items.count%></td>
         <td></td>
-        <td></td>
+        <% if order.pending? %>
+          <td>已下单</td>
+        <% elsif order.closed? %>
+          <td>已关闭</td>
+        <% end%>
       </tr>
     <% end %>
   </table>

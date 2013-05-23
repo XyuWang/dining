@@ -1,31 +1,42 @@
 <div class="container">
-  <table class="table">
-    <tr>
-      <th>编号</th>
-      <th>名称</th>
-      <th>数量</th>
-      <th>总价</th>
-    </tr>
-    <% @cart.line_items.each_with_index do |line_item, index|%>
+  <% if @cart.line_items.any? %>
+    <table class="table">
       <tr>
-        <td> <%= index + 1 %></td>
-        <td> <%= line_item.product.title %></td>
-        <td> <%= number_field_tag :quantity, line_item.quantity, id: "quantity_#{line_item.id}" %></td>
-        <td> <%= line_item.quantity * line_item.price %></td>
-        <td><%= link_to "移除", cart_path(line_item_id: line_item), method: :delete, class: "btn"%></td>
-        <script>
-          $(document).ready(function(){
-            $("#<%= "quantity_#{line_item.id}"%>").change(function(){
-            });
-          });
-        </script>
+        <th>编号</th>
+        <th>名称</th>
+        <th>数量</th>
+        <th>总价</th>
       </tr>
-    <% end %>
-  </table>
-  <div class="checkout">
-    <%= form_tag orders_path, method: :post do %>
-      <%= text_field_tag :message,"", class: "span9", placeholder: "在这输入你的留言" %>
-      <%= submit_tag "下单", class: "btn btn-large btn-primary"%>
+      <% @cart.line_items.each_with_index do |line_item, index|%>
+        <tr>
+          <td> <%= index + 1 %></td>
+          <td> <%= line_item.product.title %></td>
+          <td> <%= number_field_tag :quantity, line_item.quantity, id: "quantity_#{line_item.id}" %></td>
+          <td> <%= line_item.quantity * line_item.price %></td>
+          <td><%= link_to "移除", cart_path(line_item_id: line_item), method: :delete, class: "btn"%></td>
+          <script>
+            $(document).ready(function(){
+              $("#<%= "quantity_#{line_item.id}"%>").change(function(){
+              });
+            });
+          </script>
+        </tr>
+      <% end %>
+    </table>
+    <div class="checkout">
+      <%= form_tag orders_path, method: :post do %>
+        名字:<%= text_field_tag :name, current_user.name, placeholder: "名字", class: "span2"%><br />
+        电话:<%= text_field_tag :phone, current_user.phone, placeholder: "电话", class: "span2" %> <br />
+        地址:<%= text_field_tag :address, current_user.address, placeholder: "地址" %><br />
+        留言:<%= text_field_tag :message,"", class: "span9", placeholder: "在留言" %><br />
+        <%= submit_tag "下单", class: "btn btn-large btn-primary"%>
+      <% end %>
+    </div>
+  <% else %>
+    <h3>
+    <p align="center">
+      你的购物车现在还为空哦，赶快去买点东西吧 ^_^
+    </p>
+  </h3>
   <% end %>
-  </div>
 </div>

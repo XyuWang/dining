@@ -13,6 +13,7 @@
               <ul class="nav">
                 <li><a href="/">主页</a></li>
                 <li><%= link_to "商品", products_path %></li>
+                <li><%= link_to "问答", "" %></li>
               </ul>
             </div><!--/.nav-collapse -->
             <div class="container">
@@ -34,7 +35,7 @@
                   <% end %>
                   <li><%= link_to "购物车 (#{CartDomain.get_products_number current_user})", "/cart" %></li>
                   <li><%=link_to "我的订单", orders_path %></li>
-                  <li><%= link_to "账户设置", ""%></li>
+                  <li><%= link_to "账户设置", "profile"%></li>
                   <li><%= link_to "退出", destroy_user_session_path, method: :delete %></li>
                 <% else %>
                   <li> <%= link_to "登录", new_user_session_path%></li>
