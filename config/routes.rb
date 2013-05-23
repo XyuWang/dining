@@ -17,6 +17,9 @@ Dining::Application.routes.draw do
 
   resources :stores, only: [:show]
 
+  get "profile", to: "profile#show"
+  put "profile", to: "profile#update"
+
   resource :cart do
     get "/", to: "cart#show"
     post "/", to: "cart#add_product"
