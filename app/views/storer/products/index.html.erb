@@ -1,5 +1,5 @@
 <div class="container">
-<%= link_to "增加产品", new_storer_product_path %>
+  <%= link_to "增加产品", new_storer_product_path %>
   <table class="table">
     <caption>产品列表</caption>
     <tr>
@@ -9,10 +9,12 @@
       <th>评分</th>
     </tr>
     <% @store.products.each do |product|%>
-      <td><%= product.title %></td>
-      <td><%= product.description %></td>
-      <td><%= %></td>
-      <td><%= %></td>
+      <tr>
+        <td><%= product.title %></td>
+        <td><%= product.description %></td>
+        <td><%= product.sales_volume%></td>
+        <td><%= %></td>
+      </tr>
     <% end %>
   </table>
 </div>

@@ -27,10 +27,13 @@ class Order < ActiveRecord::Base
   def total_price
     OrderDomain.get_total_price self
   end
+
   private
   def send_delivered_meessage
     line_items.each do |line_item|
-      #销量
+      product = line_item.product
+      product.sales_volume += line_item.quantity
+      product.save
     end
   end
 

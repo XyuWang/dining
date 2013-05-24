@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  attr_accessible :description, :store_id, :title, :price
+  attr_accessible :description, :store_id, :title, :price, :sales_colume
 
   validates :description, :title, :store, :price, presence: true
 

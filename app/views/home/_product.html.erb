@@ -11,5 +11,9 @@
     price:
     <%= product.price %>
   </div>
+  <div>
+    sales volume:
+    <%= product.sales_volume %>
+  </div>
   <%= link_to "来一份", cart_path(product_id: product), method: :post, class: "btn btn-small"%>
 </div>
