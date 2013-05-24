@@ -1,0 +1,44 @@
+<div class="container">
+  <table class="table">
+    <tr>
+      <th>订单ID</th>
+      <th>商品</th>
+      <th>总价格</th>
+      <th>状态</th>
+      <th>发货</th>
+      <th>关闭</th>
+    </tr>
+    <% @orders.each do |order| %>
+      <% if order.pending? %>
+        <tr class="info">
+          <td><%= order.id %></td>
+          <td><%= order.line_items.count%></td>
+          <td><%= order.total_price %></td>
+          <td>已下单</td>
+          <td><%= link_to "取消订单", close_storer_order_path(order), method: :put, class: "btn", confirm: "确认要取消订单么"%></td>
+          <td><%= link_to "发货", deliver_storer_order_path(order), method: :put, class: "btn"%></td>
+        </tr>
+
+      <% elsif order.delivered? %>
+        <tr class="success">
+          <td><%= order.id %></td>
+          <td><%= order.line_items.count%></td>
+          <td><%= order.total_price %></td>
+          <td>已发货</td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <% else order.closed? %>
+          <tr class="error">
+            <td><%= order.id %></td>
+            <td><%= order.line_items.count%></td>
+            <td><%= order.total_price %></td>
+            <td>已关闭</td>
+            <td></td>
+            <td></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>

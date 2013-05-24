@@ -13,6 +13,12 @@ Dining::Application.routes.draw do
     get "/", to: "storer#show"
     put "/", to: "storer#update"
     resources :products
+    resources :orders, only: [:index, :deliver, :close] do
+      member do
+        put "deliver", to: "orders#deliver"
+        put "close", to: "orders#close"
+      end
+    end
   end
 
   resources :stores, only: [:show]

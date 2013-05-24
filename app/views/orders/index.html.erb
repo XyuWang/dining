@@ -1,22 +1,38 @@
 <div class="container">
   <table class="table">
     <tr>
-      <th>编号</th>
+      <th>订单编号</th>
+      <td>下单时间</th>
       <th>产品</th>
       <th>总价</th>
       <th>状态</th>
     </tr>
-    <% @orders.each_with_index do |order, index|%>
-      <tr>
-        <td><%= index + 1 %></td>
-        <td><%= order.line_items.count%></td>
-        <td><%= OrderDomain.get_total_price order%></td>
-        <% if order.pending? %>
+    <% @orders.each do |order|%>
+      <% if order.pending? %>
+        <tr class="warning">
+          <td><%= order.id %></td>
+          <td><%= order.created_at.localtime.strftime "%F %T" %></td>
+          <td><%= order.line_items.count%></td>
+          <td><%= order.total_price%></td>
           <td>已下单</td>
-        <% elsif order.closed? %>
+        </tr>
+      <% elsif order.closed? %>
+        <tr class="error">
+          <td><%= order.id %></td>
+          <td><%= order.created_at.localtime.strftime "%F %T" %></td>
+          <td><%= order.line_items.count%></td>
+          <td><%= order.total_price%></td>
           <td>已关闭</td>
-        <% end%>
-      </tr>
+        </tr>
+      <% elsif order.delivered? %>
+        <tr class="success">
+          <td><%= order.id %></td>
+          <td><%= order.created_at.localtime.strftime "%F %T" %></td>
+          <td><%= order.line_items.count%></td>
+          <td><%= order.total_price%></td>
+          <td>已发货</td>
+        </tr>
+      <% end%>
     <% end %>
   </table>
 </div>

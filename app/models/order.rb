@@ -2,6 +2,8 @@
 class Order < ActiveRecord::Base
   attr_accessible :message, :user_id, :phone, :address, :name, :store_id
 
+  default_scope order('created_at DESC')
+  
   validates :user_id, :user, :phone, :address, :state, :store, presence: true
   validate :line_items, :ensure_have_line_items
 
@@ -17,12 +19,19 @@ class Order < ActiveRecord::Base
       transition pending: :closed
     end
   end
+
   belongs_to :user
   belongs_to :store
   has_many :line_items, as: :referable
 
+  def total_price
+    OrderDomain.get_total_price self
+  end
   private
   def send_delivered_meessage
+    line_items.each do |line_item|
+      #销量
+    end
   end
 
   def send_closed_meessage

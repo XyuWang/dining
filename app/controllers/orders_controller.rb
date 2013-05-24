@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
 
     if @order.save
       @cart.line_items.destroy_all
-      return redirect_to :back, notice: "成功下单！"
+      return redirect_to orders_path, notice: "成功下单！"
     else
       return redirect_to :back, alert: @order.errors.full_messages.to_sentence
     end
