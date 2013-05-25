@@ -1,6 +1,13 @@
 <div>
   商店名称:
-  <%= store.name %> <br/>
+  <%= store.name %>
+  状态：
+  <% if store.opened?%>
+    营业中
+  <% else %>
+    休息中
+  <% end %>
+<br/>
   <% store.products.each do |product|%>
     <%= render "product", product: product%>
   <% end %>

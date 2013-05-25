@@ -5,7 +5,13 @@
 <p>
   商店描述 <%= @store.description%>
 </p>
-
+<% if @store.opened? %>
+  状态：营业中
+<%= link_to "关闭商店", storer_store_close_path, method: :put, class: "btn btn-danger", confirm: "你确认要关闭商店么?"%>
+<% else %>
+  状态：已关闭
+  <%= link_to "开始营业", storer_store_open_path, method: :put, class: "btn btn-success"%>
+<% end %>
 <%= link_to "产品列表", storer_products_path %>
 <%= link_to "订单列表", storer_orders_path %>
 <%= link_to "增加产品", new_storer_product_path %>

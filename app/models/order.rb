@@ -6,6 +6,7 @@ class Order < ActiveRecord::Base
   
   validates :user_id, :user, :phone, :address, :state, :store, presence: true
   validate :line_items, :ensure_have_line_items
+  validate :line_items, :ensure_can_be_ordered
 
   state_machine :state, initial: :pending do
     after_transition pending: :delivered, do: :send_delivered_meessage
@@ -39,10 +40,18 @@ class Order < ActiveRecord::Base
 
   def send_closed_meessage
   end
-  
+
   def ensure_have_line_items
     if self.line_items.blank?
       errors.add :base, "请至少选择一件产品"
+    end
+  end
+
+  def ensure_can_be_ordered
+    line_items.each do |line_item|
+      if line_item.product.can_be_ordered? == false
+        errors.add :base, "不能购买此商品"
+      end
     end
   end
 end

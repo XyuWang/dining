@@ -12,6 +12,8 @@ Dining::Application.routes.draw do
   namespace "storer" do
     get "/", to: "storer#show"
     put "/", to: "storer#update"
+    put "store/open", to: "store#open"
+    put "store/close", to: "store#close"
     resources :products
     resources :orders, only: [:index, :deliver, :close] do
       member do

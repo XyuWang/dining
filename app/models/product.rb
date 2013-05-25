@@ -5,4 +5,8 @@ class Product < ActiveRecord::Base
 
   belongs_to :store
   has_many :line_items, as: :referable
+
+  def can_be_ordered?
+    store.opened?
+  end
 end
