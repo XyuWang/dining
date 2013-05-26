@@ -7,6 +7,7 @@ class Order < ActiveRecord::Base
   validates :user_id, :user, :phone, :address, :state, :store, presence: true
   validate :line_items, :ensure_have_line_items
   validate :line_items, :ensure_can_be_ordered
+  validate :can_deliver
 
   state_machine :state, initial: :pending do
     after_transition pending: :delivered, do: :send_delivered_meessage
@@ -52,6 +53,14 @@ class Order < ActiveRecord::Base
       if line_item.product.can_be_ordered? == false
         errors.add :base, "不能购买此商品"
       end
+    end
+  end
+
+  def can_deliver?
+    total_price =  OrderDomain.get_total_price self
+    money = self.store.free_deliver_price - total_price
+    if money > 0
+      errors.add :base, "还差#{money}元才能送货"
     end
   end
 end

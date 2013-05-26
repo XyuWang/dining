@@ -5,4 +5,5 @@ class Cart < ActiveRecord::Base
 
   has_many :line_items, as: :referable
   belongs_to :user
+  belongs_to :store
 end

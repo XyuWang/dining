@@ -32,6 +32,7 @@ Dining::Application.routes.draw do
   post   "cart", to: "cart#add_product"
   put    "cart", to: "cart#update"
   delete "cart", to: "cart#remove_product"
+  get    "cart/total_price", to: "cart#total_price"
 
   devise_for :users
 
