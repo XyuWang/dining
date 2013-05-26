@@ -28,8 +28,7 @@
                   }
                   $("#<%= "quantity_#{line_item.id}"%>").val(response["quantity"]);
                   $("#<%= "line_item_#{line_item.id}_price"%>").text(response["price"]);
-                  $("#total_price").text(response["total_price"]);
-                  //console.log("ok")
+                  refresh_total_price();
                 });
               });
             });
@@ -40,7 +39,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td>总价:<b id="total_price"><%= CartDomain.get_total_price current_user%></b></td>
+        <td>总价:<b id="total_price"></b></td>
       </tr>
     </table>
     <div class="checkout">
@@ -49,7 +48,7 @@
         电话:<%= text_field_tag :phone, current_user.phone, placeholder: "电话", class: "span2" %> <br />
         地址:<%= text_field_tag :address, current_user.address, placeholder: "地址" %><br />
         留言:<%= text_field_tag :message,"", class: "span9", placeholder: "如果需要的话 在此留言" %><br />
-        <%= submit_tag "下单", class: "btn btn-large btn-primary"%>
+        <%= submit_tag "下单", class: "btn btn-large btn-primary", id: "checkout"%>
       <% end %>
     </div>
   <% else %>
@@ -60,3 +59,34 @@
     </h3>
   <% end %>
 </div>
+<script>
+  function refresh_total_price(){
+    $.ajax({
+      type: "GET",
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      url: "cart/total_price",
+      data: {}
+      }).done(function(response) {
+      var free_deliver_price  =  response["free_deliver_price"];
+      var total_price = response["total_price"]
+
+      $("#total_price").text(total_price);
+      console.log((total_price <= free_deliver_price))
+      console.log(total_price)
+      console.log(free_deliver_price)
+      if((total_price - free_deliver_price)>= 0){
+        $("#checkout").val("点我下单啦");
+        $("#checkout").removeAttr('disabled');
+        }else{
+        $("#checkout").val("还差"+ (free_deliver_price - total_price).toString() + "元就可以下单咯");
+        $("#checkout").attr('disabled','disabled');
+      }
+    });
+  }
+
+
+
+  $(document).ready(function(){
+    refresh_total_price();
+  });
+</script>

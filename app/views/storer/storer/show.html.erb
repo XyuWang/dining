@@ -28,6 +28,7 @@
     <%= form_for @store, url: storer_path, method: :put do |f|%>
       <%= f.text_field :name, placeholder: "商店名称" %><br/>
       <%= f.text_area :description, placeholder: "商店描述"%>
+      <%= f.text_field :free_deliver_price, placeholder: "输入达到多少钱可以免费送餐" %>
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>

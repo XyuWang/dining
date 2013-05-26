@@ -30,15 +30,24 @@ class CartController < ApplicationController
   def show
   end
 
+  def total_price
+    total_price = CartDomain.get_total_price(current_user)
+    if @cart.store.present?
+      free_deliver_price = @cart.store.free_deliver_price
+    end
+
+    render json: {total_price: total_price, free_deliver_price: free_deliver_price}
+  end
+
   def update
     line_item = @cart.line_items.find params[:line_item_id]
 
     quantity = line_item.quantity = params[:quantity]
 
     if line_item.save
-      render json: {state: "successful", quantity: quantity, price: line_item.quantity * line_item.product.price, total_price: CartDomain.get_total_price(current_user)}
+      render json: {state: "successful", quantity: quantity, price: line_item.quantity * line_item.product.price}
     else
-      render json: {state: "failed", quantity: quantity, price: line_item.quantity * line_item.product.price, total_price: CartDomain.get_total_price(current_user)}
+      render json: {state: "failed", quantity: quantity, price: line_item.quantity * line_item.product.price}
     end
   end
 
