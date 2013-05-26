@@ -11,7 +11,7 @@ gem 'role_model'
 
 group :production do
   gem 'unicorn'
-  get 'pg'
+  gem 'pg'
 end
 
 group :development, :test do
