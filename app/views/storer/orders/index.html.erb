@@ -1,4 +1,14 @@
 <div class="container">
+
+  <ul class="nav nav-tabs">
+    <li>
+      <a href="<%= storer_path%>">商店状态</a>
+    </li>
+    <li><a href="<%= storer_products_path%>">产品列表</a></li>
+    <li class="active"><a href="<%= storer_orders_path%>">订单列表</a></li>
+  </ul>
+
+
   <table class="table">
     <tr>
       <th>订单ID</th>
@@ -16,7 +26,7 @@
           <td><%= order.total_price %></td>
           <td>已下单</td>
           <td><%= link_to "取消订单", close_storer_order_path(order), method: :put, class: "btn", confirm: "确认要取消订单么"%></td>
-          <td><%= link_to "发货", deliver_storer_order_path(order), method: :put, class: "btn"%></td>
+          <td><%= link_to "发货", deliver_storer_order_path(order), method: :put, class: "btn btn-danger"%></td>
         </tr>
 
       <% elsif order.delivered? %>

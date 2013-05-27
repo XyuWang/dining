@@ -7,8 +7,10 @@
   <% else %>
     休息中
   <% end %>
-<br/>
-  <% store.products.each do |product|%>
-    <%= render "product", product: product%>
-  <% end %>
+  <br/>
+  <ul class="thumbnails">
+    <% store.products.each do |product|%>
+      <%= render "product", product: product%>
+    <% end %>
+  </ul>
 </div>

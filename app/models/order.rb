@@ -7,7 +7,7 @@ class Order < ActiveRecord::Base
   validates :user_id, :user, :phone, :address, :state, :store, presence: true
   validate :line_items, :ensure_have_line_items
   validate :line_items, :ensure_can_be_ordered
-  validate :can_deliver
+  validate :can_deliver?
 
   state_machine :state, initial: :pending do
     after_transition pending: :delivered, do: :send_delivered_meessage

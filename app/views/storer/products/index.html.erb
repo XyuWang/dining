@@ -1,5 +1,14 @@
 <div class="container">
-  <%= link_to "增加产品", new_storer_product_path %>
+  <ul class="nav nav-tabs">
+    <li>
+      <a href="<%= storer_path%>">商店状态</a>
+    </li>
+    <li class="active"><a href="<%= storer_products_path%>">产品列表</a></li>
+    <li><a href="<%= storer_orders_path%>">订单列表</a></li>
+  </ul>
+
+
+  <%= link_to "增加产品", new_storer_product_path, class: "btn btn-primary" %>
   <table class="table">
     <caption>产品列表</caption>
     <tr>
