@@ -13,7 +13,6 @@
   <%= link_to "关闭商店", storer_store_close_path, method: :put, class: "btn btn-danger", confirm: "你确认要关闭商店么?"%>
 <% else %>
   状态：<h2 class="text-danger"> 已关闭 </h2>
-  <%= link_to "关闭商店", storer_store_close_path, method: :put, class: "btn btn-danger", confirm: "你确认要关闭商店么?"%>
   <%= link_to "开始营业", storer_store_open_path, method: :put, class: "btn btn-success"%>
 <% end %>
 <a href="#myStore" role="button" class="btn" data-toggle="modal">编辑商店</a>
@@ -24,6 +23,9 @@
   商店描述:<br />
   <%= @store.description%>
 </p>
+<%= image_tag @store.avatar.url%>
+<%= image_tag @store.avatar.url(:medium)%>
+<%= image_tag @store.avatar.url(:thumb)%>
 </div>
 
 <!-- Modal -->
@@ -35,6 +37,7 @@
   <div class="modal-body">
     <%= form_for @store, url: storer_path, method: :put do |f|%>
       <%= f.text_field :name, placeholder: "商店名称" %><br/>
+      商店头像:<%= f.file_field :avatar%>
       <%= f.text_area :description, placeholder: "商店描述"%>
       <div class="input-prepend input-append">
         <span class="add-on">¥</span>

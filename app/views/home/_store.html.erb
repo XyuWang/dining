@@ -7,6 +7,7 @@
   <% else %>
     休息中
   <% end %>
+  <%= image_tag store.avatar.url%>
   <br/>
   <ul class="thumbnails">
     <% store.products.each do |product|%>
