@@ -1,23 +1,18 @@
-<div class="span3">
-  <div>
-    title:
-    <%= product.title %>
-  </div>
-  <div>
-    description:
-    <%= product.description %>
-  </div>
-  <div>
-    price:
-    <%= product.price %>
-  </div>
-  <div>
-    sales volume:
-    <%= product.sales_volume %>
-  </div>
-  <% if product.store.can_ordered? %>
-    <%= button_to "来一份", cart_path(product_id: product), class: "btn btn-small"%>
-  <% else %>
-    <%= button_to "休息中", "", class: "btn btn-small", disabled: true%>
-  <% end %>
-</div>
+  <li class="span2">
+    <div class="thumbnail">
+      <p><%= product.title %></p>
+      <p><%= product.description %></p>
+      <%= product.price %>
+      <%= product.sales_volume %>
+      <% if product.store.can_ordered? %>
+        <%= button_to "来一份", cart_path(product_id: product), class: "btn btn-small"%>
+      <% else %>
+        <%= button_to "休息中", "", class: "btn btn-small", disabled: true%>
+      <% end %>
+      <%= link_to "详情", "javascript:void(0)", id: "product", class: "btn btn-small", "data-toggle" => "popover", "data-content" => "123"%>
+    </div>
+  </li>
+  <script>
+    $(document).ready(function(){
+    });
+  </script>

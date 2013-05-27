@@ -1,21 +1,29 @@
 <div class="container">
-  <p>
-    商店名称 <%= @store.name %>
-</p>
-<p>
-  商店描述 <%= @store.description%>
-</p>
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <a href="<%= storer_path%>">商店状态</a>
+    </li>
+    <li><a href="<%= storer_products_path%>">产品列表</a></li>
+    <li><a href="<%= storer_orders_path%>">订单列表</a></li>
+  </ul>
+
+
 <% if @store.opened? %>
-  状态：营业中
-<%= link_to "关闭商店", storer_store_close_path, method: :put, class: "btn btn-danger", confirm: "你确认要关闭商店么?"%>
+  <h2 class="text-success"> 营业中 </h2>
+  <%= link_to "关闭商店", storer_store_close_path, method: :put, class: "btn btn-danger", confirm: "你确认要关闭商店么?"%>
 <% else %>
-  状态：已关闭
+  状态：<h2 class="text-danger"> 已关闭 </h2>
+  <%= link_to "关闭商店", storer_store_close_path, method: :put, class: "btn btn-danger", confirm: "你确认要关闭商店么?"%>
   <%= link_to "开始营业", storer_store_open_path, method: :put, class: "btn btn-success"%>
 <% end %>
-<%= link_to "产品列表", storer_products_path %>
-<%= link_to "订单列表", storer_orders_path %>
-<%= link_to "增加产品", new_storer_product_path %>
 <a href="#myStore" role="button" class="btn" data-toggle="modal">编辑商店</a>
+  <p>
+    <br/>商店名称: <%= @store.name %>
+</p>
+<p>
+  商店描述:<br />
+  <%= @store.description%>
+</p>
 </div>
 
 <!-- Modal -->
@@ -28,11 +36,14 @@
     <%= form_for @store, url: storer_path, method: :put do |f|%>
       <%= f.text_field :name, placeholder: "商店名称" %><br/>
       <%= f.text_area :description, placeholder: "商店描述"%>
-      <%= f.text_field :free_deliver_price, placeholder: "输入达到多少钱可以免费送餐" %>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-    <%= f.submit "确定", class:"btn btn-primary"%>
-  </div>
-<% end %>
+      <div class="input-prepend input-append">
+        <span class="add-on">¥</span>
+        <%= f.text_field :free_deliver_price, placeholder: "输入达到多少钱可以免费送餐" %>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+      <%= f.submit "确定", class:"btn btn-primary"%>
+    </div>
+  <% end %>
 </div>
