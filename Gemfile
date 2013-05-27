@@ -8,6 +8,8 @@ gem 'devise'
 gem 'cancan'
 gem 'state_machine'
 gem 'role_model'
+gem "paperclip", "~> 3.0"
+gem 'rmagick'
 
 group :production do
   gem 'unicorn'

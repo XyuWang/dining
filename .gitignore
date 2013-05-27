@@ -80,3 +80,4 @@ config/gibbon.yml
 public/paperclip/
 /sh/*.*
 db/schema.rb
+public/system

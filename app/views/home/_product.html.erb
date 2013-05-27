@@ -1,6 +1,7 @@
   <li class="span2">
     <div class="thumbnail">
       <p><%= product.title %></p>
+         <%= image_tag product.avatar.url(:thumb) %>
       <p><%= product.description %></p>
       <%= product.price %>
       <%= product.sales_volume %>
