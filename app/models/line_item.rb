@@ -1,5 +1,5 @@
 class LineItem < ActiveRecord::Base
-  attr_accessible :price, :product_id, :quantity, :cart_id, :order_id
+  attr_accessible :price, :product_id, :quantity, :cart_id, :order_id, :user_id
 
   validates :price, :product, :quantity, presence:true
   validates :price, numericality: {greater_than_or_equal_to: 0.01}
@@ -8,5 +8,6 @@ class LineItem < ActiveRecord::Base
   belongs_to :cart
   belongs_to :order
   belongs_to :product
+  belongs_to :user
   has_one :comment, as: :commentable
 end

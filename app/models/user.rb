@@ -15,5 +15,6 @@ class User < ActiveRecord::Base
 
   has_one :store
   has_one :cart
+  has_many :line_items
   has_many :orders
 end

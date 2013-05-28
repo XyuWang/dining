@@ -2,6 +2,8 @@ Dining::Application.routes.draw do
 
   resources :products, only: [:index, :show]
   resources :orders, only: [:index, :create]
+  resources :comments, only: [:create]
+
   root to: "home#show"
 
   get "admin", to: "admin::admin#show"
