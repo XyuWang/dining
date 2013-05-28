@@ -24,7 +24,7 @@ class Order < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :store
-  has_many :line_items, as: :referable
+  has_many :line_items
 
   def total_price
     OrderDomain.get_total_price self

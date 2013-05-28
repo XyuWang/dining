@@ -1,0 +1,11 @@
+<div class="container">
+  <%= @product.title %>
+  <%= @product.description %>
+  <ul>
+  <% @product.line_items.each do |line_item|%>
+    <% if line_item.comment.present?%>
+      <li><%= line_item.comment.context %></li>
+    <% end %>
+  <% end %>
+  </ul>
+</div>

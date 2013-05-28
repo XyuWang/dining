@@ -3,7 +3,7 @@ class Cart < ActiveRecord::Base
 
   validates :user, presence: true
 
-  has_many :line_items, as: :referable
+  has_many :line_items
   belongs_to :user
   belongs_to :store
 end

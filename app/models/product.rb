@@ -4,7 +4,8 @@ class Product < ActiveRecord::Base
   validates :description, :title, :store, :price, presence: true
 
   belongs_to :store
-  has_many :line_items, as: :referable
+  has_many :line_items
+
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 
   def can_be_ordered?
