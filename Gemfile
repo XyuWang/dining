@@ -18,6 +18,10 @@ end
 
 group :development, :test do
   gem 'factory_girl',       '2.0.2'      # 2.0.3 breaks loading factories with a Duplication Error
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem 'email_spec', require: false
+  gem 'shoulda-matchers'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'debugger'
