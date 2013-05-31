@@ -16,4 +16,9 @@ class User < ActiveRecord::Base
   has_one :cart
   has_many :line_items
   has_many :orders
+
+  def cart
+    cart = super
+    cart ||= self.create_cart
+  end
 end
