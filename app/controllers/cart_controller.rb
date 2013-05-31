@@ -5,13 +5,19 @@ class CartController < ApplicationController
   before_filter :load_product_and_ensure_in_same_store, only: [:add_product]
 
   def add_product
-    line_item = @cart.line_items.new
-    line_item.product_id = @product.id
-    line_item.quantity = 1
-    line_item.price = @product.price
-    line_item.user = current_user
+    line_item = @cart.line_items.find_by_product_id @product.id
 
-    if @cart.save
+    if line_item
+      line_item.quantity += 1
+    else
+      line_item = @cart.line_items.new
+      line_item.product_id = @product.id
+      line_item.quantity = 1
+      line_item.price = @product.price
+      line_item.user = current_user
+    end
+
+    if line_item.save
       redirect_to :back, notice: "成功"
     else
       redirect_to :back, alert: @cart.errors.full_messages.to_sentence

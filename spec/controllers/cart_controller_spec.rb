@@ -53,11 +53,24 @@ describe CartController do
       context "product exist" do
         let!(:product) {create :product}
 
-        it "should add product" do
-          lambda do
-            post :add_product, product_id: product.id
-          end.should change{ @user.reload; @user.cart.line_items.count }.by 1
+        context "line_item not exist" do
+          it "should add product" do
+            lambda do
+              post :add_product, product_id: product.id
+            end.should change{ @user.reload; @user.cart.line_items.count }.by 1
+          end
+        end
 
+        context "line_item exist" do
+          let!(:line_item) {create :line_item, cart_id: @user.cart.id, product_id: product.id, quantity: 1}
+
+          it "should only add line_item quantity" do
+            lambda do
+              post :add_product, product_id: product.id
+            end.should change{ @user.reload; @user.cart.line_items.count }.by 0
+            line_item.reload
+            line_item.quantity.should == 2
+          end
         end
       end
     end
@@ -157,7 +170,7 @@ describe CartController do
 
         line_item = create :line_item, cart_id: @user.cart.id, quantity: 1
         lambda do
-        put :update, line_item_id: line_item.id, quantity: 2
+          put :update, line_item_id: line_item.id, quantity: 2
         end.should change{line_item.reload; line_item.quantity}.by 1
       end
     end
