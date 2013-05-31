@@ -1,17 +1,14 @@
 #coding: UTF-8
 class Order < ActiveRecord::Base
-  attr_accessible :message, :user_id, :phone, :address, :name, :store_id
+  attr_accessible :user_id, :store_id, :phone, :address, :name, :message
 
   default_scope order('created_at DESC')
-  
+
   validates :user_id, :user, :phone, :address, :state, :store, presence: true
-  validate :line_items, :ensure_have_line_items
-  validate :line_items, :ensure_can_be_ordered
-  validate :can_deliver?
+  validate :ensure_have_line_items, :ensure_can_be_ordered, :can_deliver?, on: :create
 
   state_machine :state, initial: :pending do
-    after_transition pending: :delivered, do: :send_delivered_meessage
-    after_transition pending: :closed, do: :send_closed_meessage
+    after_transition pending: :delivered, do: :after_deliver
 
     event :deliver do
       transition pending: :delivered
@@ -31,7 +28,7 @@ class Order < ActiveRecord::Base
   end
 
   private
-  def send_delivered_meessage
+  def after_deliver
     line_items.each do |line_item|
       product = line_item.product
       product.sales_volume += line_item.quantity
@@ -39,21 +36,22 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def send_closed_meessage
-  end
-
   def ensure_have_line_items
     if self.line_items.blank?
       errors.add :base, "请至少选择一件产品"
+      return false
     end
+    true
   end
 
   def ensure_can_be_ordered
     line_items.each do |line_item|
       if line_item.product.can_be_ordered? == false
-        errors.add :base, "不能购买此商品"
+        errors.add :base, "不能购买#{line_item.product.title}"
+        return false
       end
     end
+    true
   end
 
   def can_deliver?

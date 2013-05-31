@@ -22,4 +22,19 @@ FactoryGirl.define do
     free_deliver_price 30.0
     association :user,  factory: :user
   end
+
+  factory :line_item do
+    price 6.5
+    quantity 1
+    association :product, factory: :product
+    association :user, factory: :user
+  end
+
+  factory :order do
+    association :user, factory: :user
+    association :store, factory: :store
+    association :line_items, factory: :line_item
+    phone "18354211111"
+    address "xxxxxxxx"
+  end
 end

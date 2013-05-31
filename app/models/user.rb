@@ -5,13 +5,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :phone, :name, :address
 
   include RoleModel
   roles :admin, :storer
 
-  scope :storers, select { |user| user.storer?}
+  scope :storers, select { |user| user.storer? }
 
   has_one :store
   has_one :cart
