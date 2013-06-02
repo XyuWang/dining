@@ -1,19 +1,31 @@
-  <li class="span2">
-    <div class="thumbnail">
-      <p><%= product.title %></p>
-         <%= image_tag product.avatar.url(:thumb) %>
-      <p><%= product.description %></p>
-      <%= product.price %>
-      <%= product.sales_volume %>
-      <% if product.store.can_ordered? %>
-        <%= button_to "来一份", cart_path(product_id: product), class: "btn btn-small"%>
-      <% else %>
-        <%= button_to "休息中", "", class: "btn btn-small", disabled: true%>
-      <% end %>
-      <%= link_to "详情", "javascript:void(0)", id: "product", class: "btn btn-small", "data-toggle" => "popover", "data-content" => "123"%>
+<td class="span2">
+  <div class="product_item">
+    <div class="product_avatar">
+      <%= image_tag product.avatar %>
     </div>
-  </li>
-  <script>
-    $(document).ready(function(){
+    <div class="product_title center">
+      <%= product.title %>
+    </div>
+    <div class="product_price pull-right">
+      <%= product.price %>元
+    </div>
+    <div class="product_sales_volume">
+     售出<%= product.sales_volume %>份
+    </div>
+    <div class="product_info">
+      <a href="#product_modal" role="button" class="btn btn-small product_detail" data-toggle="modal" id="product_<%= product.id%>">详情</a>
+      <% if product.store.can_ordered? %>
+        <%= link_to "来一份", cart_path(product_id: product), class: "btn btn-small pull-right", method: :post%>
+      <% else %>
+        <%= button_to "休息中", "", class: "btn btn-small pull-right", disabled: true%>
+      <% end %>
+    </div>
+  </div>
+</td>
+<script>
+  $(document).ready(function(){
+    $("#product_<%=product.id%>").click(function(){
+      $('#product_modal_body').load('<%= product_path(product)%>');
     });
-  </script>
+  });
+</script>

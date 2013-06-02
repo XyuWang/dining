@@ -1,17 +1,23 @@
 <div>
-  商店名称:
-  <%= store.name %>
-  状态：
-  <% if store.opened?%>
-    营业中
-  <% else %>
-    休息中
+  <td class="span2">
+    <div class="store_item">
+      <%= image_tag store.avatar.url%>
+
+      <div class="store_name">
+        <%= store.name %>
+      </div>
+      <% if store.opened?%>
+        <div class="store_state_closed">
+          <p class="center">营业中</p>
+        </div>
+      <% else %>
+        <div class="store_state_closed">
+          <p class="center">休息中</p>
+        </div>
+      <% end %>
+    </div>
+  </td>
+  <% store.products.each do |product|%>
+    <%= render "product", product: product%>
   <% end %>
-  <%= image_tag store.avatar.url%>
-  <br/>
-  <ul class="thumbnails">
-    <% store.products.each do |product|%>
-      <%= render "product", product: product%>
-    <% end %>
-  </ul>
 </div>

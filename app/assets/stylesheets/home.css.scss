@@ -1,0 +1,56 @@
+body {background-image: url("http://static10.elemecdn.com/images/forward/background/clouds.png");}
+.store_item
+{
+  padding: 20px 20px 20px 23px;
+  border-right: 1px solid #DDD;
+  border-bottom: 1px solid #DDD;
+  border-top: 1px solid #DDD;
+  width: 100px;
+  position: relative;
+  word-break: break-all;
+  display: table-cell;
+  vertical-align: inherit;
+}
+.store_item:hover {
+background-color: #eff8ff;
+}
+
+.store_name{
+text-align:center;
+font-size:20px;
+}
+
+.product_item
+{
+  padding: 20px 20px 20px 23px;
+  border-right: 1px solid #DDD;
+  border-bottom: 1px solid #DDD;
+  border-top: 1px solid #DDD;
+  width: 193px;
+  position: relative;
+  word-break: break-all;
+  display: table-cell;
+  vertical-align: inherit;
+}
+.product_item:hover {
+background-color: #eff8ff;
+}
+.product_price {color:red;}
+.product_title {font-size:14px;}
+.center {text-align:center}
+
+.product_info {
+  position:relative;
+  bottom: 0px;
+  display: inline;
+}
+.product_detail {
+  position:relative;
+  left:0px;
+}
+
+#test {
+position:absolute;
+right:200px;
+bottom:230px;
+}
