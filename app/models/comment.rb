@@ -1,7 +1,11 @@
 class Comment < ActiveRecord::Base
-  attr_accessible :commentable_id, :commentable_type, :context
+  attr_accessible :line_item_id, :product_id, :context, :user_id
 
-  validates :context, :commentable, presence: true
+  default_scope order('created_at DESC')
 
-  belongs_to :commentable, polymorphic: true
+  validates :context, :user, :product, presence: true
+
+  belongs_to :line_item
+  belongs_to :product
+  belongs_to :user
 end

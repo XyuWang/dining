@@ -5,6 +5,7 @@ class Product < ActiveRecord::Base
 
   belongs_to :store
   has_many :line_items
+  has_many :comments
   before_destroy :decline_destroy
 
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
@@ -13,7 +14,7 @@ class Product < ActiveRecord::Base
     store.opened?
   end
 
-private 
+private
   def decline_destroy
     false
   end

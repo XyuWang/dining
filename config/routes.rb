@@ -1,6 +1,8 @@
 Dining::Application.routes.draw do
 
-  resources :products, only: [:index, :show]
+  resources :products, only: [:index, :show] do
+    resources :comments, only: [:index]
+  end
   resources :orders, only: [:index, :create]
   resources :comments, only: [:create]
 

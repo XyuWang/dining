@@ -12,5 +12,5 @@ class LineItem < ActiveRecord::Base
   belongs_to :order
   belongs_to :product
   belongs_to :user
-  has_one :comment, as: :commentable
+  has_one :comment
 end

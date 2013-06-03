@@ -1,0 +1,29 @@
+<ul class="nav nav-tabs">
+  <li><a href="#" class="detail">商品详情</a></li>
+  <li class="active">
+    <a href="#" class="comments">评论</a>
+  </li>
+</ul>
+
+<table class="table">
+  <tr>
+    <th>内容</th>
+    <th>用户</th>
+  </tr>
+  <% @comments.each do |comment|%>
+    <tr>
+      <td><%= comment.context %></td>
+      <% if comment.user.name.present? %>
+        <td><%= comment.user.name[0] %></td>
+      <% else %>
+        <td>匿名</td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
+<script>
+  $(".nav-tabs .detail").click(function(){
+    $('#product_modal_body').load('<%= product_path(@product)%>');
+  });
+</script>
