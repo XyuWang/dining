@@ -17,7 +17,7 @@ class CartController < ApplicationController
       line_item.user = current_user
     end
 
-    if line_item.save
+    if line_item.save && @cart.save
       redirect_to :back, notice: "成功"
     else
       redirect_to :back, alert: @cart.errors.full_messages.to_sentence
@@ -68,7 +68,7 @@ class CartController < ApplicationController
   def load_product_and_ensure_in_same_store
     @product = Product.find params[:product_id]
 
-    @cart.store_id = nil if @cart.line_items.count == 0
+    @cart.store_id = nil if @cart.line_items.blank?
 
     if @cart.store_id && @cart.store_id != @product.store.id
       redirect_to :back, alert: "一次只能选购一个商家的产品哦， 如果要选购不同卖家的产品，请先清空购物车哈 ^_^"
