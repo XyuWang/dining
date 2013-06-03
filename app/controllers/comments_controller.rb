@@ -9,6 +9,11 @@ class CommentsController < ApplicationController
     render :layout => false
   end
 
+  def new
+    @order = current_user.orders.find params[:order_id]
+
+  end
+
   def create
     line_item = current_user.line_items.find params[:line_item_id]
 

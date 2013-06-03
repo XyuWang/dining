@@ -10,27 +10,30 @@
     <% @orders.each do |order|%>
       <% if order.pending? %>
         <tr class="warning">
-          <td><%= order.id %></td>
-          <td><%= order.created_at.localtime.strftime "%F %T" %></td>
+          <td class="span1"><%= order.id %></td>
+          <td class="span2"><%= order.created_at.localtime.strftime "%F %T" %></td>
           <td><%= order.line_items.count%></td>
-          <td><%= order.total_price%></td>
+          <td class="span1"><%= order.total_price%></td>
           <td>已下单</td>
+          <td></td>
         </tr>
       <% elsif order.closed? %>
         <tr class="error">
-          <td><%= order.id %></td>
-          <td><%= order.created_at.localtime.strftime "%F %T" %></td>
+          <td class="span1"><%= order.id %></td>
+          <td class="span2"><%= order.created_at.localtime.strftime "%F %T" %></td>
           <td><%= order.line_items.count%></td>
-          <td><%= order.total_price%></td>
+          <td class="span1"><%= order.total_price%></td>
           <td>已关闭</td>
+          <td></td>
         </tr>
       <% elsif order.delivered? %>
         <tr class="success">
-          <td><%= order.id %></td>
-          <td><%= order.created_at.localtime.strftime "%F %T" %></td>
+          <td class="span1"><%= order.id %></td>
+          <td class="span2"><%= order.created_at.localtime.strftime "%F %T" %></td>
           <td><%= order.line_items.count%></td>
-          <td><%= order.total_price%></td>
+          <td class="span1"><%= order.total_price%></td>
           <td>已发货</td>
+          <td class="span1"><a>评论</a></td>
         </tr>
       <% end%>
     <% end %>

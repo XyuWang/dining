@@ -3,7 +3,11 @@ Dining::Application.routes.draw do
   resources :products, only: [:index, :show] do
     resources :comments, only: [:index]
   end
-  resources :orders, only: [:index, :create]
+
+  resources :orders, only: [:index, :create, :comments] do
+    resources :comments, only: [:new]
+  end
+
   resources :comments, only: [:create]
 
   root to: "home#show"
@@ -12,7 +16,7 @@ Dining::Application.routes.draw do
   namespace "admin" do
     resources :storers, only: [:index, :create, :destroy]
   end
-  
+
   namespace "storer" do
     get "/", to: "storer#show"
     put "/", to: "storer#update"
@@ -20,10 +24,8 @@ Dining::Application.routes.draw do
     put "store/close", to: "store#close"
     resources :products
     resources :orders, only: [:index, :deliver, :close] do
-      member do
         put "deliver", to: "orders#deliver"
         put "close", to: "orders#close"
-      end
     end
   end
 

@@ -8,7 +8,7 @@ class Storer::OrdersController < ApplicationController
   end
 
   def deliver
-    order = @orders.find params[:id]
+    order = @orders.find params[:order_id]
 
     if order.deliver
       redirect_to :back, notice: "成功"
@@ -18,7 +18,7 @@ class Storer::OrdersController < ApplicationController
   end
 
   def close
-    order = @orders.find params[:id]
+    order = @orders.find params[:order_id]
 
     if order.close
       redirect_to :back, notice: "成功"
