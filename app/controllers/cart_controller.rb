@@ -10,15 +10,13 @@ class CartController < ApplicationController
     if line_item
       line_item.quantity += 1
     else
-      line_item = @cart.line_items.new
-      line_item.product_id = @product.id
-      line_item.quantity = 1
-      line_item.price = @product.price
-      line_item.user = current_user
+      line_item = @cart.line_items.new product_id: @product.id, quantity: 1, price: @product.price, user_id: current_user.id
     end
 
     if line_item.save && @cart.save
-      redirect_to :back, notice: "成功"
+      respond_to do |format|
+        format.js { render }
+      end
     else
       redirect_to :back, alert: @cart.errors.full_messages.to_sentence
     end
@@ -28,7 +26,9 @@ class CartController < ApplicationController
     line_item = @cart.line_items.find params[:line_item_id]
 
     if line_item.destroy
-      redirect_to :back, notice: "成功"
+      respond_to do |format|
+        format.js { render }
+      end
     else
       redirect_to :back, alert: line_item.errors.full_messages.to_sentence
     end

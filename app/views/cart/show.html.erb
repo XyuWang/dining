@@ -13,14 +13,14 @@
           <td> <%= line_item.product.title %></td>
           <td> <%= number_field_tag :quantity, line_item.quantity, min: 1, id: "quantity_#{line_item.id}", class: "span1" %></td>
           <td><b id="<%= "line_item_#{line_item.id}_price"%>"><%= line_item.quantity * line_item.price %></b></td>
-          <td><%= link_to "移除", cart_path(line_item_id: line_item), method: :delete, class: "btn btn-warning"%></td>
+          <td><%= link_to "移除", cart_path(line_item_id: line_item), method: :delete, class: "btn btn-warning line_item_remove", remote: true%></td>
           <script>
             $(document).ready(function(){
               $("#<%= "quantity_#{line_item.id}"%>").change(function(){
                 $.ajax({
                   type: "PUT",
                   beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-                  url: "cart",
+                  url: "/cart",
                   data: {"line_item_id": <%= line_item.id%>, "quantity": $("#<%= "quantity_#{line_item.id}"%>").val()}
                   }).done(function(response) {
                   if(response["state"] == "successful"){
@@ -64,16 +64,13 @@
     $.ajax({
       type: "GET",
       beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-      url: "cart/total_price",
+      url: "/cart/total_price",
       data: {}
       }).done(function(response) {
       var free_deliver_price  =  response["free_deliver_price"];
       var total_price = response["total_price"]
 
       $("#total_price").text(total_price);
-      console.log((total_price <= free_deliver_price))
-      console.log(total_price)
-      console.log(free_deliver_price)
       if((total_price - free_deliver_price)>= 0){
         $("#checkout").val("点我下单啦");
         $("#checkout").removeAttr('disabled');

@@ -37,10 +37,10 @@
                   </div>
                 </li>
               <% end %>
-              <li>
+              <li id="cart_field">
                 <a href="#cart_modal" id="cart" role="button" data-toggle="modal">购物车</a>
               </li>
-              <li>
+              <li id="cart_number">
                 <span class="badge badge-success"><%= CartDomain.get_products_number current_user%></span>
               </li>
               <li><%=link_to "我的订单", orders_path %></li>
@@ -74,7 +74,7 @@
 
 <script>
   $("#cart").click(function(){
-    $("#cart_modal_body").load("cart/");
+    $("#cart_modal_body").load("/cart/");
   });
 </script>
 
