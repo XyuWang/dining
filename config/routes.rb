@@ -29,7 +29,7 @@ Dining::Application.routes.draw do
     end
   end
 
-  resources :stores, only: [:show]
+  resources :stores, only: [:index, :show]
 
   get "profile", to: "profile#show"
   put "profile", to: "profile#update"

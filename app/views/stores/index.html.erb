@@ -1,0 +1,9 @@
+<div class="container">
+  <table class="table">
+    <% @stores.each do |store|%>
+      <td class="span2">
+        <%= render "store", store: store%>
+    </td>
+    <% end %>
+  </table>
+</div>

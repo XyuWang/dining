@@ -1,6 +1,6 @@
 <div>
   <td class="span2">
-    <div class="store_item">
+    <div class="store_item" id="store_item_<%= store.id%>">
       <%= image_tag store.avatar.url%>
 
       <div class="store_name">
@@ -15,9 +15,19 @@
           <p class="center">休息中</p>
         </div>
       <% end %>
+
+      <a href="javascript:void(0)">产品列表</a>
     </div>
   </td>
   <% store.products.each do |product|%>
     <%= render "product", product: product%>
   <% end %>
 </div>
+
+<script>
+  $(document).ready(function(){
+    $("#store_item_<%= store.id%>").click(function(){
+      window.location = "<%= store_path(store)%>";
+    });
+  });
+ </script>

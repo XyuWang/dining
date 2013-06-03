@@ -1,2 +1,43 @@
-<h1>Stores#show</h1>
-<p>Find me in app/views/stores/show.html.erb</p>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <br />
+      <br />
+      <%= image_tag @store.avatar.url%>
+
+      <div class="store_name">
+        <%= @store.name %>
+      </div>
+      <% if @store.opened?%>
+        <div class="store_state_closed">
+          <p class="center">营业中</p>
+        </div>
+      <% else %>
+        <div class="store_state_closed">
+          <p class="center">休息中</p>
+        </div>
+      <% end %>
+    </div>
+    <div class="span10">
+      <% @store.products.each do |product|%>
+        <%= render "product", product: product%>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!--product Modal -->
+<div id="product_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">详情</h3>
+  </div>
+  <div class="modal-body" id="product_modal_body">
+    <p>载入中...</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+    <button class="btn btn-primary">来一份</button>
+  </div>
+</div>
+
