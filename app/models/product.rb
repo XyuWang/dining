@@ -5,10 +5,16 @@ class Product < ActiveRecord::Base
 
   belongs_to :store
   has_many :line_items
+  before_destroy :decline_destroy
 
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 
   def can_be_ordered?
     store.opened?
+  end
+
+private 
+  def decline_destroy
+    false
   end
 end
