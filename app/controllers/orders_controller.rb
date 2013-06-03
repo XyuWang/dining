@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @orders = current_user.orders
+    @orders = current_user.orders.page(params[:page]).per(30)
   end
 
   def create

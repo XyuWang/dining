@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   def index
     @product = Product.find params[:product_id]
 
-    @comments = @product.comments
+    @comments = @product.comments.limit(15)
     render :layout => false
   end
 
