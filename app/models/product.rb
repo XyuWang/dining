@@ -1,5 +1,7 @@
 class Product < ActiveRecord::Base
-  attr_accessible :description, :store_id, :title, :price, :sales_colume, :avatar
+  attr_accessible :description, :store_id, :title, :price, :sales_volume, :avatar
+
+  default_scope order('sales_volume DESC')
 
   validates :description, :title, :store, :price, presence: true
 

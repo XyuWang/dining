@@ -19,7 +19,7 @@
       <a href="javascript:void(0)">产品列表</a>
     </div>
   </td>
-  <% store.products.each do |product|%>
+  <% store.products.limit(3).each do |product|%>
     <%= render "product", product: product%>
   <% end %>
 </div>

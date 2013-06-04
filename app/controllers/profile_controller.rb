@@ -14,7 +14,7 @@ class ProfileController < ApplicationController
     if current_user.save
       redirect_to :back, notice:"更新成功!" and return
     else
-      redirect_to :back, alert:"更新失败!" and return
+      render action: :show, alert:"更新失败!" and return
     end
   end
 end
