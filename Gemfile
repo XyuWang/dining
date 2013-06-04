@@ -11,6 +11,7 @@ gem 'role_model'
 gem "paperclip", "~> 3.0"
 gem 'rmagick'
 gem 'kaminari'
+gem 'rails-i18n'
 
 group :production do
   gem 'unicorn'
