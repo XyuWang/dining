@@ -11,12 +11,12 @@ class Storer::ProductsController < ApplicationController
   end
 
   def create
-    @store.products.build params[:product]
+    @product = @store.products.build params[:product]
 
-    if @store.save
-      redirect_to :back, notice: "成功!"
+    if @product.save
+      redirect_to storer_products_path, notice: "成功!"
     else
-      redirect_to :back, alert: @store.errors.full_messages.to_sentence
+      redirect_to :back, alert: @product.errors.full_messages.to_sentence
     end
   end
 
@@ -25,7 +25,7 @@ class Storer::ProductsController < ApplicationController
   end
 
   def edit
-
+    @product = @store.products.find params[:id]
   end
 
   def update
@@ -33,10 +33,10 @@ class Storer::ProductsController < ApplicationController
 
     @product.update_attributes params[:product]
 
-    if @store.save
-      redirect_to :back, notice: "成功!"
+    if @product.save
+      redirect_to storer_products_path, notice: "成功!"
     else
-      redirect_to :back, alert: @store.errors.full_messages.to_sentence
+      redirect_to :back, alert: @product.errors.full_messages.to_sentence
     end
   end
 

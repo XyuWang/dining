@@ -16,6 +16,10 @@
   <%= link_to "开始营业", storer_store_open_path, method: :put, class: "btn btn-success"%>
 <% end %>
 <a href="#myStore" role="button" class="btn" data-toggle="modal">编辑商店</a>
+<div>
+  <br />
+  <%= image_tag @store.avatar.url(:thumb)%>
+</div>
   <p>
     <br/>商店名称: <%= @store.name %>
 </p>
@@ -23,9 +27,6 @@
   商店描述:<br />
   <%= @store.description%>
 </p>
-<%= image_tag @store.avatar.url%>
-<%= image_tag @store.avatar.url(:medium)%>
-<%= image_tag @store.avatar.url(:thumb)%>
 </div>
 
 <!-- Modal -->
@@ -36,9 +37,12 @@
   </div>
   <div class="modal-body">
     <%= form_for @store, url: storer_path, method: :put do |f|%>
-      <%= f.text_field :name, placeholder: "商店名称" %><br/>
+      商店名称<%= f.text_field :name, placeholder: "商店名称" %><br/>
       商店头像:<%= f.file_field :avatar%>
-      <%= f.text_area :description, placeholder: "商店描述"%>
+    <br />
+    商店描述<br/><%= f.text_area :description, placeholder: "将显示在商店左边"%>
+  <br/>
+  起送价:
       <div class="input-prepend input-append">
         <span class="add-on">¥</span>
         <%= f.text_field :free_deliver_price, placeholder: "输入达到多少钱可以免费送餐" %>

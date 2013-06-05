@@ -1,0 +1,15 @@
+<div class="container">
+  <br />
+  <%= form_for @product, url: storer_product_path(@product) do |f|%>
+    <span class="help-inline">标题</span>
+    <%= f.text_field :title, placeholder: "请输入商品标题"%><br/>
+    <span class="help-inline">描述</span>
+    <%= f.text_area :description, placeholder: "请输入商品描述"%><br/>
+    商品图片:<%= f.file_field :avatar%>
+    <div class="input-prepend input-append">
+      <span class="add-on">¥</span>
+      <%= f.text_field :price, placeholder: "请输入商品价格"%><br/>
+    </div>
+    <%= f.submit "提交", class:"btn btn-large btn-primary"%>
+  <% end %>
+</div>
