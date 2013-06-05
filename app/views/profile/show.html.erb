@@ -1,8 +1,17 @@
 <div class="container">
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <a href="#">收货地址</a>
+    </li>
+    <li><%= link_to "修改密码", edit_user_registration_path%></a></li>
+  </ul>
+
+
+
   <%= form_tag "profile", method: :put, class:"form-horizontal" do%>
     <fieldset>
       <div id="legend" class="">
-        <legend class="">个人信息</legend>
+        <legend class="">收货地址</legend>
       </div>
 
       <div class="control-group">
