@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_one :cart
   has_many :line_items
   has_many :orders
+  has_many :comments
 
   def cart
     cart = super

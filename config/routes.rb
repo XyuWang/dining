@@ -7,8 +7,8 @@ Dining::Application.routes.draw do
   resources :orders, only: [:index, :create, :comments] do
     resources :comments, only: [:new]
   end
-
-  resources :comments, only: [:create]
+  
+  resources :comments, only: [:create, :destroy]
 
   root to: "home#show"
 

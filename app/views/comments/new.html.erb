@@ -1,3 +1,25 @@
 <div class="container">
+  <table class="table">
+    <tr>
+      <th>商品</th>
+      <th>评论</th>
+    </tr>
+    <% @order.line_items.each do |line_item|%>
+      <tr>
+        <td class="span3"> <%= line_item.product.title%> </td>
+        
+        <% if line_item.comment.present?%>
+          <td class="span3"> <%= line_item.comment.context%> </td>
+          <td class="span1"><%=link_to "删除", comment_path(line_item.comment), method: :delete, class: "btn btn-danger"%></td>
+        <% else %>
+          <%= form_tag "/comments?line_item_id=#{line_item.id}", method: :post  do%>
+            <td class="span4"><%= text_field_tag :context%></td>
+            <td><%= submit_tag "确定", class: "btn "%></td>
+          <% end %>
+        <% end %>
+      </tr>
 
+
+    <% end %>
+  </table>
 </div>
