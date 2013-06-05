@@ -3,11 +3,12 @@
     <div class="span2">
       <br />
       <br />
-      <%= image_tag @store.avatar.url%>
+      <%= image_tag @store.avatar.url, class: "center"%>
 
       <div class="store_name">
         <%= @store.name %>
       </div>
+
       <% if @store.opened?%>
         <div class="store_state_closed">
           <p class="center">营业中</p>
@@ -17,6 +18,11 @@
           <p class="center">休息中</p>
         </div>
       <% end %>
+
+      <%= @store.description %>
+      <p>
+        起送价:<%= @store.free_deliver_price %>
+    </p>
     </div>
     <div class="span10">
       <% @store.products.each do |product|%>
@@ -37,7 +43,7 @@
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-    <button class="btn btn-primary">来一份</button>
+    <button class="btn btn-primary" id="product_modal_submit">来一份</button>
   </div>
 </div>
 

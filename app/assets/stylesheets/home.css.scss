@@ -52,3 +52,20 @@ background-color: #eff8ff;
 #cart {
   color: white;
 }
+
+.more_products
+{
+  padding: 20px 20px 20px 23px;
+  border-right: 1px solid #DDD;
+  border-bottom: 1px solid #DDD;
+  border-top: 1px solid #DDD;
+  width: 40px;
+  position: relative;
+  word-break: break-all;
+  display: table-cell;
+  vertical-align: inherit;
+}
+.more_products:hover {
+background-color: #eff8ff;
+}
+

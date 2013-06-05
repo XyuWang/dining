@@ -15,7 +15,7 @@
     <div class="product_info">
       <a href="#product_modal" role="button" class="btn btn-small product_detail" data-toggle="modal" id="product_<%= product.id%>">详情</a>
       <% if product.store.can_ordered? %>
-        <%= link_to "来一份", cart_path(product_id: product), class: "btn btn-small pull-right", method: :post%>
+        <%= link_to "来一份", cart_path(product_id: product), class: "btn btn-small pull-right", method: :post, remote: true%>
       <% else %>
         <%= button_to "休息中", "", class: "btn btn-small pull-right", disabled: true%>
       <% end %>
@@ -26,6 +26,8 @@
   $(document).ready(function(){
     $("#product_<%=product.id%>").click(function(){
       $('#product_modal_body').load('<%= product_path(product)%>');
+
+      $("#product_modal_submit").replaceWith('<%= link_to "来一份", cart_path(product_id: product), id:"product_modal_submit", class: "btn btn-primary", method: :post, remote: true%>');
     });
   });
 </script>

@@ -22,4 +22,8 @@ class Store < ActiveRecord::Base
   def can_ordered?
     opened?
   end
+
+  def to_s
+    name
+  end
 end

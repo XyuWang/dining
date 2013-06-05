@@ -26,6 +26,9 @@
   $(document).ready(function(){
     $("#product_<%=product.id%>").click(function(){
       $('#product_modal_body').load('<%= product_path(product)%>');
+
+      $("#product_modal_submit").replaceWith('<%= link_to "来一份", cart_path(product_id: product), id:"product_modal_submit", class: "btn btn-primary", method: :post, remote: true%>');
+
     });
   });
 </script>

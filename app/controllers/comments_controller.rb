@@ -5,8 +5,11 @@ class CommentsController < ApplicationController
   def index
     @product = Product.find params[:product_id]
 
-    @comments = @product.comments.limit(15)
-    render :layout => false
+    @comments = @product.comments.page(params[:page]).per(15)
+
+    respond_to  do |format|
+      format.js {render}
+    end
   end
 
   def new

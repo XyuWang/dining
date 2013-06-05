@@ -35,7 +35,9 @@ class CartController < ApplicationController
   end
 
   def show
-    render layout: false
+    respond_to do |format|
+      format.js { render }
+    end
   end
 
   def total_price

@@ -2,14 +2,11 @@
   <li class="active">
     <a href="#" class="detail">商品详情</a>
   </li>
-  <li><a href="#" class="comments">评论</a></li>
+  <li><%= link_to "评论", product_comments_path(@product), class: "comments", remote: true %></li>
 </ul>
 <%= @product.description %>
 <br />
-<%= image_tag @product.avatar%>
+<%= image_tag @product.avatar(:medium)%>
 
 <script>
- $(".nav-tabs .comments").click(function(){
-    $('#product_modal_body').load('<%= product_comments_path(@product)%>');
-  });
-</script>
+ </script>

@@ -1,3 +1,5 @@
+<div class="modal-body" id="product_modal_body">
+
 <ul class="nav nav-tabs">
   <li><a href="#" class="detail">商品详情</a></li>
   <li class="active">
@@ -14,7 +16,7 @@
     <tr>
       <td><%= comment.context %></td>
       <% if comment.user.name.present? %>
-        <td><%= comment.user.name[0] %></td>
+        <td><%= comment.user.name[0] %>**</td>
       <% else %>
         <td>匿名</td>
       <% end %>
@@ -22,6 +24,9 @@
   <% end %>
 </table>
 
+  <%= paginate @comments, remote: true %>
+
+</div>
 <script>
   $(".nav-tabs .detail").click(function(){
     $('#product_modal_body').load('<%= product_path(@product)%>');
