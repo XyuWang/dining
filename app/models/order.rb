@@ -37,21 +37,17 @@ class Order < ActiveRecord::Base
   end
 
   def ensure_have_line_items
-    if self.line_items.blank?
+    if line_items.blank?
       errors.add :base, "请至少选择一件产品"
-      return false
     end
-    true
   end
 
   def ensure_can_be_ordered
     line_items.each do |line_item|
       if line_item.product.can_be_ordered? == false
         errors.add :base, "不能购买#{line_item.product.title}"
-        return false
       end
     end
-    true
   end
 
   def can_deliver?

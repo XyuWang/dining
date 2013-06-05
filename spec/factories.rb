@@ -33,8 +33,13 @@ FactoryGirl.define do
   factory :order do
     association :user, factory: :user
     association :store, factory: :store
-    association :line_items, factory: :line_item
     phone "18354211111"
     address "xxxxxxxx"
+  end
+
+  factory :comment do
+    context "context"
+    association :user, factory: :user
+    association :product, factory: :product
   end
 end

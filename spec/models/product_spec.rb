@@ -8,6 +8,7 @@ describe Product do
   it {should validate_presence_of :price}
   it {should belong_to :store}
   it {should have_many :line_items}
+  it {should have_many :comments}
 
   describe "#can_be_ordered" do
     before do
@@ -24,5 +25,10 @@ describe Product do
     it "should return false if store is closed" do
       @product.can_be_ordered?.should == false
     end
+  end
+
+  it "should can't destroy the product" do
+    @product = create :product
+    @product.destroy.should == false
   end
 end
