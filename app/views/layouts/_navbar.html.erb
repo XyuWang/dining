@@ -74,8 +74,6 @@
 
 <script>
   $("#cart").click(function(){
-    $("#cart_modal_body").load("/cart/");
-    
     $.ajax({
       type: "GET",
       beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},

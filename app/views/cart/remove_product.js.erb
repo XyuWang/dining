@@ -1,2 +1,7 @@
-$("#cart_modal_body").load("/cart/");
 $("li .badge").text("<%= CartDomain.get_products_number current_user%>");
+$("#cart_modal_body").replaceWith('<%= escape_javascript(render "show", layout: false) %>');
+
+$(document).ready(function(){
+    refresh_total_price();
+  });
+
