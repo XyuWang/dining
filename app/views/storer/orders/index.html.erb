@@ -14,6 +14,7 @@
       <th>订单ID</th>
       <th>商品</th>
       <th>总价格</th>
+      <th>联系方式</th>
       <th>状态</th>
       <th>发货</th>
       <th>关闭</th>
@@ -22,8 +23,9 @@
       <% if order.pending? %>
         <tr class="info">
           <td><%= order.id %></td>
-          <td><%= order.line_items.count%></td>
+          <td><%= render "order", order: order %></td>
           <td><%= order.total_price %></td>
+          <td><%= render "contact", order: order %></td>
           <td>已下单</td>
           <td><%= link_to "取消订单", storer_order_close_path(order), method: :put, class: "btn", confirm: "确认要取消订单么"%></td>
           <td><%= link_to "发货", storer_order_deliver_path(order), method: :put, class: "btn btn-danger"%></td>
@@ -32,7 +34,7 @@
       <% elsif order.delivered? %>
         <tr class="success">
           <td><%= order.id %></td>
-          <td><%= order.line_items.count%></td>
+          <td><%= render "order", order: order %></td>
           <td><%= order.total_price %></td>
           <td>已发货</td>
           <td></td>

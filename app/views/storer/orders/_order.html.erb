@@ -1,0 +1,7 @@
+<ol>
+  <% order.line_items.each do |line_item|%>
+    <li>
+      <%="#{line_item.product_title}    ￥#{line_item.price}" %>
+    </li>
+  <% end %>
+</ol>

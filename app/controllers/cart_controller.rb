@@ -56,9 +56,11 @@ class CartController < ApplicationController
     line_item.quantity = params[:quantity]
 
     if line_item.save
-      render json: {state: "successful", quantity: line_item.quantity, price: line_item.quantity * line_item.product.price}
+      render json: {state: "successful", quantity: line_item.quantity, price: line_item.quantity * line_item.price}
     else
-      render json: {state: "failed", quantity: line_item.quantity, price: line_item.quantity * line_item.product.price}
+      line_item.reload
+      price = line_item.quantity * line_item.product.price
+      render json: {state: "failed", quantity: line_item.quantity, price: price }
     end
   end
 

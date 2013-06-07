@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
       comment = line_item.build_comment context: params[:context], product_id: line_item.product_id, user_id: current_user.id
 
       if comment.save
-        return redirect_to orders_path, notice: "评论成功"
+        return redirect_to :back, notice: "评论成功"
       else
         return redirect_to :back, alert: comment.errors.full_messages.to_sentence
       end

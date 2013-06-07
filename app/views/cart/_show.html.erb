@@ -12,7 +12,7 @@
         <tr>
           <td> <%= index + 1 %></td>
           <td> <%= line_item.product.title %></td>
-          <td> <%= number_field_tag :quantity, line_item.quantity, min: 1, id: "quantity_#{line_item.id}", class: "span1" %></td>
+          <td> <%= number_field_tag :quantity, line_item.quantity, min: 1, id: "quantity_#{line_item.id}", class: "span1", digits:true %></td>
           <td><b id="<%= "line_item_#{line_item.id}_price"%>"><%= line_item.quantity * line_item.price %></b></td>
           <td><%= link_to "移除", cart_path(line_item_id: line_item), method: :delete, class: "btn btn-warning line_item_remove", remote: true%></td>
           <script>
@@ -46,12 +46,15 @@
     <div class="checkout">
       <%= form_tag orders_path, method: :post, class: "new_order" do %>
         <%= submit_tag "下单", class: "btn btn-large btn-primary", id: "checkout", confirm: "确定要下单么？"%> <br /><br />
+        电话:<%= text_field_tag :phone, current_user.phone, placeholder: "电话", class: "span2", required: true %>* <br />
+        地址:<%= text_field_tag :address, current_user.address, placeholder: "地址", required: true %>*<br />
         名字:<%= text_field_tag :name, current_user.name, placeholder: "名字", class: "span2"%><br />
-        电话:<%= text_field_tag :phone, current_user.phone, placeholder: "电话", class: "span2" %> <br />
-        地址:<%= text_field_tag :address, current_user.address, placeholder: "地址" %><br />
         留言:<%= text_field_tag :message,"", class: "span4", placeholder: "如果需要的话 在此留言" %><br />
       <% end %>
     </div>
+    <script>
+      $(".new_order").validate();
+    </script>
   <% else %>
     <h3>
       <p align="center">
