@@ -17,7 +17,7 @@ describe CartController do
       end
 
       it "should response success" do
-        get :show
+        get :show, format: "js"
 
         response.status.should == 200
       end

@@ -12,7 +12,7 @@
         <tr class="warning">
           <td class="span1"><%= order.id %></td>
           <td class="span2"><%= order.created_at.localtime.strftime "%F %T" %></td>
-          <td><%= order.line_items.count%></td>
+          <td><%= render "order", order: order %></td>
           <td class="span1"><%= order.total_price%></td>
           <td>已下单</td>
           <td></td>
@@ -21,7 +21,7 @@
         <tr class="error">
           <td class="span1"><%= order.id %></td>
           <td class="span2"><%= order.created_at.localtime.strftime "%F %T" %></td>
-          <td><%= order.line_items.count%></td>
+          <td><%= render "order", order: order %></td>
           <td class="span1"><%= order.total_price%></td>
           <td>已关闭</td>
           <td></td>
@@ -30,7 +30,7 @@
         <tr class="success">
           <td class="span1"><%= order.id %></td>
           <td class="span2"><%= order.created_at.localtime.strftime "%F %T" %></td>
-          <td><%= order.line_items.count%></td>
+          <td><%= render "order", order: order %></td>
           <td class="span1"><%= order.total_price%></td>
           <td>已发货</td>
           <td class="span1"><%= link_to "评论", new_order_comment_path(order)%></td>

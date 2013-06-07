@@ -45,11 +45,11 @@
     </table>
     <div class="checkout">
       <%= form_tag orders_path, method: :post, class: "new_order" do %>
+        <%= submit_tag "下单", class: "btn btn-large btn-primary", id: "checkout", confirm: "确定要下单么？"%> <br /><br />
         名字:<%= text_field_tag :name, current_user.name, placeholder: "名字", class: "span2"%><br />
         电话:<%= text_field_tag :phone, current_user.phone, placeholder: "电话", class: "span2" %> <br />
         地址:<%= text_field_tag :address, current_user.address, placeholder: "地址" %><br />
         留言:<%= text_field_tag :message,"", class: "span4", placeholder: "如果需要的话 在此留言" %><br />
-        <%= submit_tag "下单", class: "btn btn-large btn-primary", id: "checkout"%>
       <% end %>
     </div>
   <% else %>

@@ -10,7 +10,7 @@ class CartController < ApplicationController
     if line_item
       line_item.quantity += 1
     else
-      line_item = @cart.line_items.new product_id: @product.id, quantity: 1, price: @product.price, user_id: current_user.id
+      line_item = @cart.line_items.new product_id: @product.id, quantity: 1, price: @product.price, user_id: current_user.id, product_title: @product.title
     end
 
     if line_item.save && @cart.save
