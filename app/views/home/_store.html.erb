@@ -19,7 +19,7 @@
     </div>
   </td>
 
-  <% store.products.limit(3).each do |product|%>
+  <% store.products.up.limit(3).each do |product|%>
     <%= render "product", product: product%>
   <% end %>
 

@@ -16,16 +16,25 @@
       <th>价格</th>
       <th>描述</th>
       <th>销量</th>
-      <th>评分</th>
+      <th></th>
+      <th>状态</th>
     </tr>
     <% @store.products.each do |product|%>
-      <tr>
+      <% if product.up?%>
+        <tr class="success">
+        <% else %>
+          <tr class="error">
+          <% end %>
         <td><%= product.title %></td>
         <td><%= product.price %></td>
         <td><%= product.description %></td>
         <td><%= product.sales_volume%></td>
-        <td><%= %></td>
         <td><%= link_to "编辑", edit_storer_product_path(product), class: "btn"%></td>
+      <% if product.up?%>
+        <td>上架&nbsp; &nbsp; <%= link_to "点此下架", down_storer_product_path(product), method: :put, class: "btn btn-danger"%></td>
+        <% else %>
+        <td>下架&nbsp; &nbsp; <%= link_to "点此上架", up_storer_product_path(product), method: :put, class: "btn btn-success"%></td>
+      <% end %>
       </tr>
     <% end %>
   </table>

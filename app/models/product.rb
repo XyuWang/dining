@@ -1,9 +1,22 @@
 class Product < ActiveRecord::Base
-  attr_accessible :description, :store_id, :title, :price, :sales_volume, :avatar
+  attr_accessible :description, :store_id, :title, :price, :sales_volume, :avatar, :state
 
   default_scope order('sales_volume DESC')
 
   validates :description, :title, :store, :price, presence: true
+
+  state_machine :state, initial: :down do
+    event :up do
+      transition down: :up
+    end
+
+    event :down do
+      transition up: :down
+    end
+  end
+
+  scope :up, where(state: "up")
+  scope :down, where(state: "down")
 
   belongs_to :store
   has_many :line_items

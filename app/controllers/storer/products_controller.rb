@@ -40,6 +40,26 @@ class Storer::ProductsController < ApplicationController
     end
   end
 
+  def up
+    @product = @store.products.find params[:id]
+
+    if @product.up
+      redirect_to :back, notice: "上架成功!"
+    else
+      redirect_to :back, alert: @product.errors.full_messages.to_sentence
+    end
+  end
+
+  def down
+    @product = @store.products.find params[:id]
+
+    if @product.down
+      redirect_to :back, notice: "下架成功!"
+    else
+      redirect_to :back, alert: @product.errors.full_messages.to_sentence
+    end
+  end
+
   private
   def ensure_user_is_storer
     authorize! :manage, :store

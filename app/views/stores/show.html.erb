@@ -25,7 +25,7 @@
     </p>
     </div>
     <div class="span10">
-      <% @store.products.each do |product|%>
+      <% @store.products.up.each do |product|%>
         <%= render "product", product: product%>
       <% end %>
     </div>

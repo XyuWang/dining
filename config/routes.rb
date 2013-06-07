@@ -22,7 +22,12 @@ Dining::Application.routes.draw do
     put "/", to: "storer#update"
     put "store/open", to: "store#open"
     put "store/close", to: "store#close"
-    resources :products
+    resources :products do
+      member do
+        put :up, to: "products#up"
+        put :down, to: "products#down"
+      end
+    end
     resources :orders, only: [:index, :deliver, :close] do
         put "deliver", to: "orders#deliver"
         put "close", to: "orders#close"
