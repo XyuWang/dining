@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="well">
+    <p class="center">内测期间，暂时只支持XXX</p> 
+  </div>
   <div class="table">
     <% @stores.each do |store| %>
       <tr>
@@ -22,3 +25,30 @@
   </div>
 </div>
 
+<script>
+  <% if !user_signed_in?%>
+    $(document).ready(function(){
+
+      $('#login').grumble({
+        text: "     请先登录哦~      ",
+        angle: 200,
+        distance: 4,
+        showAfter: 0,
+        hideAfter: 3000,
+      });
+    });
+  <% end %>
+
+  <% if user_signed_in? && current_user.phone.blank? || current_user.address.blank? %>
+    $(document).ready(function(){
+
+      $('#address').grumble({
+        text: "先设置收货地址吧~",
+        angle: 200,
+        distance: 3,
+        showAfter: 0,
+        hideAfter: 2000,
+      });
+    });
+  <% end %>
+</script>

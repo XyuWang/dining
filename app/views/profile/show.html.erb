@@ -16,18 +16,9 @@
 
       <div class="control-group">
         <!-- Text input-->
-        <label class="control-label" for="input01">姓名</label>
-        <div class="controls">
-          <%= text_field_tag :name, "", value:@user.name, class:"input-xlarge",placeholder:"输入你的姓名"%>
-        </div>
-      </div>
-
-
-      <div class="control-group">
-        <!-- Text input-->
         <label class="control-label" for="input01">手机号码</label>
         <div class="controls">
-          <%= text_field_tag :phone, "", value:@user.phone, class:"input-xlarge",placeholder:"输入你的手机号码"%>
+          <%= text_field_tag :phone, "", value:@user.phone, class:"input-xlarge",placeholder:"输入你的手机号码", required: "true"%> *
         </div>
         </div>
         
@@ -35,8 +26,19 @@
         <!-- Textarea -->
         <label class="control-label">地址</label>
         <div class="controls">
-          <%= text_area_tag(:address, @user.address, style:"margin: 0px; width: 273px; height: 74px;") %>
+          <%= text_area_tag(:address, @user.address, style:"margin: 0px; width: 273px; height: 74px;", required: "true") %> *
         </div>
+        
+        <br />
+        
+        <div class="control-group">
+        <!-- Text input-->
+        <label class="control-label" for="input01">姓名</label>
+        <div class="controls">
+          <%= text_field_tag :name, "", value:@user.name, class:"input-xlarge",placeholder:"输入你的姓名"%>
+        </div>
+      </div>
+
 
         <div class="control-group">
           <!-- Button -->

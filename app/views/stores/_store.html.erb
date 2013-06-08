@@ -1,10 +1,12 @@
 <td class="span2">
-  <div>
-    <div>
-      <%= image_tag store.avatar %>
-    </div>
-    <div class="center">
-      <%= store.name %>
-    </div>
+  <div class="store_item" id="store_<%= store.id%>">
+    <%= image_tag store.avatar %>
+    <br />
+    <p class="center"><b> <%= store.name %></b> </p>
   </div>
 </td>
+<script>
+  $("#store_<%= store.id %>").click(function(){
+    window.location = "<%= store_path(store)%>"
+  });
+</script>

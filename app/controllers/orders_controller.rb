@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
 
     if @order.save
       @cart.line_items.destroy_all
-      return redirect_to orders_path, notice: "成功下单！"
+      return redirect_to orders_path, notice: "成功下单啦！ 食物马上送到，稍等哦~"
     else
       return redirect_to :back, alert: @order.errors.full_messages.to_sentence
     end
