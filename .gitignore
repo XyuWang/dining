@@ -81,3 +81,5 @@ public/paperclip/
 /sh/*.*
 db/schema.rb
 public/system
+##########################
+config/deploy.rb
