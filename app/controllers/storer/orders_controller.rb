@@ -35,9 +35,11 @@ class Storer::OrdersController < ApplicationController
 
   def load_orders
     @store = current_user.store
+
     if @store.nil?
-      redirect_to storer_path, alert: "请先建立商店"
+      return redirect_to storer_path, alert: "请先建立商店"
     end
+
     @orders = @store.orders
   end
 end
