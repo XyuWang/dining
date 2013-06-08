@@ -4,7 +4,7 @@ class Order < ActiveRecord::Base
 
   default_scope order('created_at DESC')
 
-  validates :user_id, :user, :phone, :address, :state, :store, presence: true
+  validates :user_id, :user, :phone, :address, :state, :store_id, :store, presence: true
   validate :ensure_have_line_items, :ensure_can_be_ordered, :can_deliver?, on: :create
 
   state_machine :state, initial: :pending do
