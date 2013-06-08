@@ -2,11 +2,14 @@ require 'spec_helper'
 
 describe ProductsController do
   describe "#show" do
-    context "user not sign in" do
-      get :show
+    let!(:product) {create :product}
 
-      response.status.should == 301
-      response.should redirect_to new_user_session_path
+    context "user not sign in" do
+      it "should response success" do
+        get :show, format: "html", id: product.id
+
+        response.status.should == 200
+      end
     end
 
     context "user sign in" do
@@ -16,7 +19,7 @@ describe ProductsController do
       end
 
       it "should response success" do
-        get :show
+        get :show, format: "html", id: product.id
         response.status.should == 200
       end
     end
