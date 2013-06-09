@@ -19,11 +19,11 @@
         </div>
       <% end %>
 
-      <%= @store.description %>
-      <p>
-        起送价:<%= @store.free_deliver_price %>
+      <p class="center">
+        <%= @store.description %>
+        <br/>  起送价:<%= @store.free_deliver_price %>
     </p>
-    </div>
+  </div>
     <div class="span10">
       <% @store.products.up.each do |product|%>
         <%= render "product", product: product%>
