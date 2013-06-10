@@ -1,53 +1,66 @@
 <div class="container">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span8">
+        <%= image_tag "https://static.ele.me/images/forward/global/logreg-bg-app.png"%>
+        <p class="span6 offset2">
+          <br />
+          <br />
+          <br />
+          食物说：不要离开我...
+        </p>
+      </div>
+      <div class="span4">
 
-  <div id="login-box" class="visible widget-box no-border">
-    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-      <fieldset>
-        <div id="legend" class="">
-          <legend class="">登录</legend>
-        </div>
+        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+          <fieldset>
+            <div id="legend" class="">
+              <legend class="">登录</legend>
+            </div>
 
-        <div class="control-group">
-          <!-- Prepended text-->
-          <label class="control-label"></label>
-          <div class="controls">
-            <div class="input-prepend">
-              <span class="add-on">邮箱</span>
-              <%= f.email_field :email, :autofocus => true, class: "span2", placeholder: "请输入登录邮箱"%></div>
-          </div>
-        </div>
-
-
-        <div class="control-group">
-          <label class="control-label"></label>
-          <div class="controls">
-            <div class="input-prepend">
-              <span class="add-on">密码</span>
-              <%= f.password_field :password, class: "span2", placeholder: "请输入密码"%></div>
-          </div>
-        </div>
+            <div class="control-group">
+              <!-- Prepended text-->
+              <label class="control-label"></label>
+              <div class="controls">
+                <div class="input-prepend">
+                  <span class="add-on">邮箱</span>
+                  <%= f.email_field :email, :autofocus => true, class: "span6", placeholder: "请输入登录邮箱"%></div>
+              </div>
+            </div>
 
 
-        <div class="control-group">
-          <label class="control-label"></label>
-          <div class="controls">
-            <label class="checkbox inline">
-              <% if devise_mapping.rememberable? -%>
-                <%= f.check_box :remember_me%> 记住我
-              <% end %>
-            </label>
-          </div>
-        </div>
+            <div class="control-group">
+              <label class="control-label"></label>
+              <div class="controls">
+                <div class="input-prepend">
+                  <span class="add-on">密码</span>
+                  <%= f.password_field :password, class: "span6", placeholder: "请输入密码"%></div>
+              </div>
+            </div>
 
-        <div class="control-group">
-          <label class="control-label"></label>
-          <div class="controls">
-            <%= f.submit "登录", class: "btn btn-success"%>
-          </div>
-        </div>
-      </fieldset>
-    <% end %>
 
-    <%= render "devise/shared/links" %>
+            <div class="control-group">
+              <label class="control-label"></label>
+              <div class="controls">
+                <label class="checkbox inline">
+                  <% if devise_mapping.rememberable? -%>
+                    <%= f.check_box :remember_me%> 记住我
+                  <% end %>
+                </label>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label"></label>
+              <div class="controls">
+                <%= f.submit "登录", class: "btn btn-success"%>
+              </div>
+            </div>
+          </fieldset>
+        <% end %>
+
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
   </div>
 </div>
