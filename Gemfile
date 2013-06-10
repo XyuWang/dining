@@ -12,12 +12,10 @@ gem "paperclip", "~> 3.0"
 gem 'rmagick'
 gem 'kaminari'
 gem 'rails-i18n'
-gem 'capistrano-unicorn', :require => false
 
 group :production, :deploy do
-  gem 'unicorn'
+  gem 'passenger'
   gem 'mysql2'
-  gem 'pg' # for heroku
 end
 
 group :development, :test do

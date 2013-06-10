@@ -83,3 +83,4 @@ db/schema.rb
 public/system
 ##########################
 config/deploy.rb
+.sass-cache/

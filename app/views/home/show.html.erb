@@ -39,7 +39,7 @@
     });
   <% end %>
 
-  <% if user_signed_in? && current_user.phone.blank? || current_user.address.blank? %>
+  <% if user_signed_in? && (current_user.phone.blank? || current_user.address.blank?) %>
     $(document).ready(function(){
 
       $('#address').grumble({
