@@ -2,17 +2,23 @@
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="span8">
-        <%= image_tag "https://static.ele.me/images/forward/global/logreg-bg-app.png"%>
+        <% urls = ["login0.jpg", "login1.jpg", "login2.jpg"]%>
+        <%= image_tag urls.sample, size: "500x350"%>
         <p class="span6 offset2">
           <br />
           <br />
           <br />
-          食物说：不要离开我...
+          不要离开我,我们永远在一起...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;——食物说
         </p>
       </div>
       <div class="span4">
 
         <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+          
+          <% resource.errors.full_messages.each do |error|%>
+            <p style="color:red; font-size: 20px"> <%= error %> </p>
+          <% end %>
+
           <fieldset>
             <div id="legend" class="">
               <legend class="">登录</legend>
@@ -24,7 +30,7 @@
               <div class="controls">
                 <div class="input-prepend">
                   <span class="add-on">邮箱</span>
-                  <%= f.email_field :email, :autofocus => true, class: "span6", placeholder: "请输入登录邮箱"%></div>
+                  <%= f.email_field :email, :autofocus => true, class: "span6", placeholder: "请输入登录邮箱", email: true, required: true%></div>
               </div>
             </div>
 
@@ -34,7 +40,7 @@
               <div class="controls">
                 <div class="input-prepend">
                   <span class="add-on">密码</span>
-                  <%= f.password_field :password, class: "span6", placeholder: "请输入密码"%></div>
+                  <%= f.password_field :password, class: "span6", placeholder: "请输入密码", required: true,  minlength: "6"%></div>
               </div>
             </div>
 
@@ -44,7 +50,8 @@
               <div class="controls">
                 <label class="checkbox inline">
                   <% if devise_mapping.rememberable? -%>
-                    <%= f.check_box :remember_me%> 记住我
+                    <%= f.check_box :remember_me%>
+                    <p>记住我</p>
                   <% end %>
                 </label>
               </div>
