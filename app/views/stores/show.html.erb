@@ -20,7 +20,7 @@
       <% end %>
 
       <p class="center">
-        <%= @store.description %>
+        <%= @store.description.html_safe %>
         <br/>  起送价:<%= @store.free_deliver_price %>
     </p>
   </div>

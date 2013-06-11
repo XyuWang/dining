@@ -12,6 +12,7 @@ gem "paperclip", "~> 3.0"
 gem 'rmagick'
 gem 'kaminari'
 gem 'rails-i18n'
+gem 'rails_kindeditor', '~> 0.3.15'
 
 group :production, :deploy do
   gem 'passenger'

@@ -25,7 +25,7 @@
 </p>
 <p>
   商店描述:<br />
-  <%= @store.description%>
+  <%= @store.description.html_safe%>
 </p>
 </div>
 
@@ -37,15 +37,15 @@
   </div>
   <div class="modal-body">
     <%= form_for @store, url: storer_path, method: :put do |f|%>
-      商店名称<%= f.text_field :name, placeholder: "商店名称" %><br/>
+      商店名称<%= f.text_field :name, placeholder: "商店名称", required: true %><br/>
       商店头像:<%= f.file_field :avatar%>
     <br />
-    商店描述<br/><%= f.text_area :description, placeholder: "将显示在商店左边"%>
+    商店描述<br/><%= f.kindeditor :description, :window_onload => true, placeholder: "将显示在商店左边", required: true%>
   <br/>
   起送价:
       <div class="input-prepend input-append">
         <span class="add-on">¥</span>
-        <%= f.text_field :free_deliver_price, placeholder: "输入达到多少钱可以免费送餐" %>
+        <%= f.text_field :free_deliver_price, placeholder: "输入达到多少钱可以免费送餐", required: true %>
       </div>
     </div>
     <div class="modal-footer">

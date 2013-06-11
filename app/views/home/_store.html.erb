@@ -4,7 +4,7 @@
       <%= image_tag store.avatar.url%>
 
       <div class="store_name">
-        <%= store.name %>
+        <%= store.name %> <br/><br/>
       </div>
       <% if store.opened?%>
         <div class="store_state_closed">
@@ -15,7 +15,6 @@
           <p class="center">休息中</p>
         </div>
       <% end %>
-      <%= store.description%>
     </div>
   </td>
 
