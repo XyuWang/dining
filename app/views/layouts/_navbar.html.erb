@@ -44,7 +44,7 @@
               </li>
               <li><%=link_to "我的订单", orders_path %></li>
               <li><%= link_to "收货地址", "profile", id: "address"%></li>
-              <li><%= link_to "退出", destroy_user_session_path, method: :delete %></li>
+              <li><%= link_to "退出 #{current_user.email}", destroy_user_session_path, method: :delete %></li>
             <% else %>
               <li><%= link_to "登录", new_user_session_path, id: "login"%></li>
               <li> <%= link_to "注册", new_user_registration_path%> </li>
