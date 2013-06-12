@@ -23,7 +23,7 @@ class Product < ActiveRecord::Base
   has_many :comments
   before_destroy :decline_destroy
 
-  has_attached_file :avatar, :styles => { :medium => "500x500>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :avatar, :styles => { :large => "500x500>", :medium => "200x150>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 
   def can_be_ordered?
     store.opened?

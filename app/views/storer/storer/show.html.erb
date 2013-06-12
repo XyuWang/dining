@@ -25,7 +25,7 @@
 </p>
 <p>
   商店描述:<br />
-  <%= @store.description.html_safe%>
+  <%= @store.description.html_safe if @store.description.present?%>
 </p>
 </div>
 
