@@ -2,7 +2,6 @@ $("li .badge").text("<%= CartDomain.get_products_number current_user%>");
 var message = "+1"
 
 var total_price = <%= CartDomain.get_total_price(current_user)%>
-console.log(total_price);
     var free_deliver_price =  <%= @cart.store.free_deliver_price %>
 
       if((total_price - free_deliver_price)>= 0){
