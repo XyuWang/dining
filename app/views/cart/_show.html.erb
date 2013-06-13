@@ -1,6 +1,6 @@
 <div class="modal-body" id="cart_modal_body">
 <% if @cart.line_items.any? %>
-    <table class="table">
+    <table class="table table-striped  table-hover table-condensed">
       <tr>
         <th>编号</th>
         <th>名称</th>
@@ -14,7 +14,7 @@
           <td> <%= line_item.product.title %></td>
           <td> <%= number_field_tag :quantity, line_item.quantity, min: 1, id: "quantity_#{line_item.id}", class: "span1", digits:true %></td>
           <td><b id="<%= "line_item_#{line_item.id}_price"%>"><%= line_item.quantity * line_item.price %></b></td>
-          <td><%= link_to "移除", cart_path(line_item_id: line_item), method: :delete, class: "btn btn-warning line_item_remove", remote: true%></td>
+          <td><%= link_to "移除", cart_path(line_item_id: line_item), method: :delete, class: "btn btn-success line_item_remove", remote: true%></td>
           <script>
             $(document).ready(function(){
               $("#<%= "quantity_#{line_item.id}"%>").change(function(){
@@ -41,14 +41,15 @@
         <td></td>
         <td></td>
         <td>总价:<b id="total_price"></b></td>
+        <td></td>
       </tr>
     </table>
     <div class="checkout">
       <%= form_tag orders_path, method: :post, class: "new_order" do %>
         <%= submit_tag "下单", class: "btn btn-large btn-primary", id: "checkout", confirm: "确定要下单么？"%> <br /><br />
-        电话:<%= text_field_tag :phone, current_user.phone, placeholder: "电话", class: "span2", required: true %>* <br />
-        地址:<%= text_field_tag :address, current_user.address, placeholder: "地址", required: true %>*<br />
-        名字:<%= text_field_tag :name, current_user.name, placeholder: "名字", class: "span2"%><br />
+        电话:<%= text_field_tag :phone, current_user.phone, placeholder: "电话", class: "span4", required: true %> &nbsp; * <br />
+        地址:<%= text_field_tag :address, current_user.address, placeholder: "地址", required: true, class: "span4"%> &nbsp; *<br />
+        名字:<%= text_field_tag :name, current_user.name, placeholder: "名字", class: "span4"%><br />
         留言:<%= text_field_tag :message,"", class: "span4", placeholder: "如果需要的话 在此留言" %><br />
       <% end %>
     </div>
