@@ -13,6 +13,7 @@ gem 'rmagick'
 gem 'kaminari'
 gem 'rails-i18n'
 gem 'rails_kindeditor', '~> 0.3.15'
+gem 'less-rails-bootstrap'
 
 group :production, :deploy do
   gem 'passenger'
@@ -44,8 +45,6 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'therubyracer'  # If using Ruby
   gem 'therubyrhino'  # If using JRuby
-  gem 'jquery-rails'  # If using Bootstrap's JS plugins.
-  gem 'less-rails-bootstrap'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', :platforms => :ruby
