@@ -1,5 +1,5 @@
 <tr>
-  <div class="store">
+  <div class="store " id="store_<%= store.id %>">
   <td class="span2">
     <div class="store_item store_item_<%= store.id%>">
       <%= image_tag store.avatar.url%>
@@ -42,7 +42,7 @@
     $(".store_item_<%= store.id%>").click(function(){
       window.location = "<%= store_path(store)%>";
     });
-
+    
   });
 </script>
 </tr>
