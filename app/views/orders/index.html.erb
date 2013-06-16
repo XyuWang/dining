@@ -26,6 +26,15 @@
           <td>已关闭</td>
           <td></td>
         </tr>
+      <% elsif order.accepted? %>
+        <tr class="success">
+          <td class="span1"><%= order.id %></td>
+          <td class="span2"><%= order.created_at.localtime.strftime "%F %T" %></td>
+          <td><%= render "order", order: order %></td>
+          <td class="span1"><%= order.total_price%></td>
+          <td>商家已经接受订单，正在制作中...</td>
+          <td></td>
+        </tr>
       <% elsif order.delivered? %>
         <tr class="success">
           <td class="span1"><%= order.id %></td>

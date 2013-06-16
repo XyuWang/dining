@@ -11,7 +11,11 @@ class Order < ActiveRecord::Base
     after_transition pending: :delivered, do: :after_deliver
 
     event :deliver do
-      transition pending: :delivered
+      transition accepted: :delivered
+    end
+
+    event :accept do
+      transition pending: :accepted
     end
 
     event :close do

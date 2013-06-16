@@ -31,6 +31,7 @@ Dining::Application.routes.draw do
     resources :orders, only: [:index, :deliver, :close] do
         put "deliver", to: "orders#deliver"
         put "close", to: "orders#close"
+        put "accept", to: "orders#accept"
     end
   end
 
