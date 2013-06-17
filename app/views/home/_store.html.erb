@@ -26,13 +26,14 @@
     <%= render "product", product: product%>
   <% end %>
 
-<td class="span1">
-  <div class="more_products store_item_<%= store.id%>">
-    <%= link_to "更多", stores_path(store) %><br />
-    <%= link_to ">>>", stores_path(store) %><br />
-    
-  </div>
-</td>
+  <% if store.products.up.count > 3  %>
+    <td class="span1">
+      <div class="more_products store_item_<%= store.id%>">
+        <%= link_to "更多", stores_path(store) %><br />
+        <%= link_to ">>>", stores_path(store) %><br />
+      </div>
+    </td>
+  <% end %>
 
 
 </div>
