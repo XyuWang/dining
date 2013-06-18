@@ -4,6 +4,7 @@ describe LineItem do
   it{should validate_presence_of :price}
   it{should validate_presence_of :product}
   it{should validate_presence_of :quantity}
+  it{should validate_presence_of :product_title}
   it{should validate_presence_of :user}
   it{should belong_to :cart}
   it{should belong_to :order}

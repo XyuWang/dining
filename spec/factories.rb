@@ -42,6 +42,7 @@ FactoryGirl.define do
   factory :line_item do
     price 6.5
     quantity 1
+    product_title "title"
     association :product, factory: :up_product
     association :user, factory: :user
   end

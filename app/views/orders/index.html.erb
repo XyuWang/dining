@@ -14,7 +14,7 @@
           <td class="span2"><%= order.created_at.localtime.strftime "%F %T" %></td>
           <td><%= render "order", order: order %></td>
           <td class="span1"><%= order.total_price%></td>
-          <td>已下单</td>
+          <td>已下单,等待商家接收订单，商家接受后会有短信提醒你~</td>
           <td></td>
         </tr>
       <% elsif order.closed? %>

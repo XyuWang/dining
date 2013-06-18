@@ -1,6 +1,6 @@
 #coding: UTF-8
 class Order < ActiveRecord::Base
-  attr_accessible :user_id, :store_id, :phone, :address, :name, :message, :total_price
+  attr_accessible :user_id, :store_id, :phone, :address, :name, :message, :total_price, :sms_status
 
   default_scope order('created_at DESC')
 
@@ -12,6 +12,7 @@ class Order < ActiveRecord::Base
 
   state_machine :state, initial: :pending do
     after_transition any => :delivered, do: :after_deliver
+    after_transition any => :accepted, do: :after_accepted
 
     event :deliver do
       transition accepted: :delivered
@@ -34,7 +35,7 @@ class Order < ActiveRecord::Base
   belongs_to :store
   has_many :line_items
 
-  before_save :set_total_price
+  before_create :set_total_price
 
   private
   def set_total_price
@@ -51,6 +52,13 @@ class Order < ActiveRecord::Base
     store = self.store
     store.turnover += self.total_price
     store.save
+  end
+
+  def after_accepted
+    content = "你好，您预订的 #{line_items.map(&:product_title).join(" ")},总计#{total_price}元，商家已经开始制作，请稍等，请在此期间保持手机畅通 ^_^ 「吃货0秒」"
+
+    self.sms_status = SMS.new.send(phone, content)
+    self.save
   end
 
   def ensure_have_line_items

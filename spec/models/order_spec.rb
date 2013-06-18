@@ -105,6 +105,25 @@ describe Order do
         @order.should be_present
       end
 
+    context "before accept" do
+      describe "sms_status" do
+        it "should be nil" do
+          @order.sms_status.should be_nil
+        end
+      end
+    end
+
+    context "after accept" do
+      before do
+        @order.accept
+      end
+
+      describe "sms_status" do
+        it "should be present" do
+          @order.sms_status.should be_present
+        end
+      end
+    end
 
     context "before deliver" do
       describe "store turnover" do
