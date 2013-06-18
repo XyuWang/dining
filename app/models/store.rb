@@ -1,5 +1,5 @@
 class Store < ActiveRecord::Base
-  attr_accessible :name, :description, :state, :user_id, :free_deliver_price, :avatar
+  attr_accessible :name, :description, :state, :user_id, :free_deliver_price, :avatar, :turnover
 
   validates :name, :description, :user, :free_deliver_price, presence: true
   validates :free_deliver_price, numericality: {greater_than_or_equal_to: 0}
@@ -25,5 +25,11 @@ class Store < ActiveRecord::Base
 
   def to_s
     name
+  end
+
+  def this_month_turnover
+    time = DateTime.new(Time.now.year, Time.now.month, 1)
+    orders = self.orders.deliver.after time
+    orders.sum(:total_price)
   end
 end

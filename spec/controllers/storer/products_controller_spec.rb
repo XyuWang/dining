@@ -261,7 +261,7 @@ describe Storer::ProductsController do
 
         context "user have store" do
           let!(:store) {create :store, user: user}
-          let!(:product) {create :open_product, store: store}
+          let!(:product) {create :up_product, store: store}
 
           context "product state is up" do
             it "should down the product" do

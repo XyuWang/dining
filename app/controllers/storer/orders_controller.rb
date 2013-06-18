@@ -5,13 +5,24 @@ class Storer::OrdersController < ApplicationController
   before_filter :load_orders
 
   def index
+    @orders = @store.orders.page(params[:page]).per(30)
+  end
+
+  def accept
+    order = @orders.find params[:order_id]
+
+    if order.accept
+      redirect_to :back, notice: "接受订单成功"
+    else
+      redirect_to :back, alert: "失败"
+    end
   end
 
   def deliver
     order = @orders.find params[:order_id]
 
     if order.deliver
-      redirect_to :back, notice: "成功"
+      redirect_to :back, notice: "发货成功"
     else
       redirect_to :back, alert: "失败"
     end
@@ -21,7 +32,7 @@ class Storer::OrdersController < ApplicationController
     order = @orders.find params[:order_id]
 
     if order.close
-      redirect_to :back, notice: "成功"
+      redirect_to :back, notice: "关闭订单成功"
     else
       redirect_to :back, alert: "失败"
     end

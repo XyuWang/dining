@@ -6,27 +6,42 @@
     <li><a href="<%= storer_products_path%>">产品列表</a></li>
     <li><a href="<%= storer_orders_path%>">订单列表</a></li>
   </ul>
-
-
-<% if @store.opened? %>
-  <h2 class="text-success"> 营业中 </h2>
-  <%= link_to "关闭商店", storer_store_close_path, method: :put, class: "btn btn-danger", confirm: "你确认要关闭商店么?"%>
-<% else %>
-  状态：<h2 class="text-danger"> 已关闭 </h2>
-  <%= link_to "开始营业", storer_store_open_path, method: :put, class: "btn btn-success"%>
-<% end %>
-<a href="#myStore" role="button" class="btn" data-toggle="modal">编辑商店</a>
-<div>
-  <br />
-  <%= image_tag @store.avatar.url(:thumb)%>
 </div>
-  <p>
-    <br/>商店名称: <%= @store.name %>
-</p>
-<p>
-  商店描述:<br />
-  <%= @store.description.html_safe if @store.description.present?%>
-</p>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <div>
+        <br />
+        <%= image_tag @store.avatar.url(:thumb)%>
+      </div>
+      <p>
+        <br/>商店名称: <%= @store.name %>
+    </p>
+    <p>
+      商店描述:<br />
+      <%= @store.description.html_safe if @store.description.present?%>
+    </p>
+  </div>
+  <div class="span8">
+
+    <% if @store.opened? %>
+        <h2 class="text-success"> 营业中 </h2>
+        <%= link_to "关闭商店", storer_store_close_path, method: :put, class: "btn btn-danger", confirm: "你确认要关闭商店么?"%>
+      <% else %>
+        状态：<h2 class="text-danger"> 已关闭 </h2>
+        <%= link_to "开始营业", storer_store_open_path, method: :put, class: "btn btn-success"%>
+      <% end %>
+      <a href="#myStore" role="button" class="btn" data-toggle="modal">编辑商店</a>
+
+      <br /><br />
+      <br /><br />
+      统计信息：
+      <p>共有商品<%= @products.count%> 件，<%= @products.up.count%>件上架，<%= @products.down.count%>件下架</p>
+      <p>共有订单<%= @orders.count%>件，本月订单<%= @orders.count%>件，未处理订单<%= @orders.pending.count%>件
+        <p>总成交额<%= @store.turnover %>，本月成交额 <%= @store.this_month_turnover%></p>
+  </div>
+</div>
 </div>
 
 <!-- Modal -->

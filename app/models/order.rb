@@ -1,17 +1,24 @@
 #coding: UTF-8
 class Order < ActiveRecord::Base
-  attr_accessible :user_id, :store_id, :phone, :address, :name, :message
+  attr_accessible :user_id, :store_id, :phone, :address, :name, :message, :total_price
 
   default_scope order('created_at DESC')
 
-  validates :user_id, :user, :phone, :address, :state, :store_id, :store, presence: true
+  validates :user_id, :user, :phone, :address, :state, :store_id, :store, :total_price, presence: true
   validate :ensure_have_line_items, :ensure_can_be_ordered, :can_deliver?, on: :create
 
+  validates :total_price, numericality:{
+    greater_than_or_equal_to: 0}
+
   state_machine :state, initial: :pending do
-    after_transition pending: :delivered, do: :after_deliver
+    after_transition any => :delivered, do: :after_deliver
 
     event :deliver do
-      transition pending: :delivered
+      transition accepted: :delivered
+    end
+
+    event :accept do
+      transition pending: :accepted
     end
 
     event :close do
@@ -19,21 +26,31 @@ class Order < ActiveRecord::Base
     end
   end
 
+  scope :pending, where(state: "pending")
+  scope :deliver, where(state: "delivered")
+  scope :after, lambda { |time| where("created_at > ?", time)}
+
   belongs_to :user
   belongs_to :store
   has_many :line_items
 
-  def total_price
-    OrderDomain.get_total_price self
-  end
+  before_save :set_total_price
 
   private
+  def set_total_price
+    self.total_price = OrderDomain.get_total_price self
+  end
+
   def after_deliver
     line_items.each do |line_item|
       product = line_item.product
       product.sales_volume += line_item.quantity
       product.save
     end
+
+    store = self.store
+    store.turnover += self.total_price
+    store.save
   end
 
   def ensure_have_line_items
