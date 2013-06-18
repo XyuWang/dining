@@ -16,7 +16,7 @@ FactoryGirl.define do
     association :store,  factory: :store
   end
 
-  factory :open_product, class: "Product" do
+  factory :up_product, class: "Product" do
     title "title"
     description "description"
     price 10.0
@@ -42,7 +42,7 @@ FactoryGirl.define do
   factory :line_item do
     price 6.5
     quantity 1
-    association :product, factory: :open_product
+    association :product, factory: :up_product
     association :user, factory: :user
   end
 

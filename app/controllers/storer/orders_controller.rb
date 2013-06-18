@@ -5,6 +5,7 @@ class Storer::OrdersController < ApplicationController
   before_filter :load_orders
 
   def index
+    @orders = @store.orders.page(params[:page]).per(30)
   end
 
   def accept

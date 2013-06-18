@@ -39,8 +39,7 @@
       统计信息：
       <p>共有商品<%= @products.count%> 件，<%= @products.up.count%>件上架，<%= @products.down.count%>件下架</p>
       <p>共有订单<%= @orders.count%>件，本月订单<%= @orders.count%>件，未处理订单<%= @orders.pending.count%>件
-      <p>总成交额，本月成交额</p>
-
+        <p>总成交额<%= @store.turnover %>，本月成交额 <%= @store.this_month_turnover%></p>
   </div>
 </div>
 </div>

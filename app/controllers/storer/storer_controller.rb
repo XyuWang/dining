@@ -5,6 +5,8 @@ class Storer::StorerController < ApplicationController
   before_filter :load_store
 
   def show
+    @products = @store.products
+    @orders = @store.orders
   end
 
   def update

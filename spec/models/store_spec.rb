@@ -83,4 +83,47 @@ describe Store do
       store.can_ordered?.should == false
     end
   end
+
+  describe "#this_month_turnover" do
+    let!(:user) {create :user}
+    let!(:store) {create :open_store, free_deliver_price: 10}
+    let!(:product_1) {create :up_product, store: store}
+    let!(:product_2) {create :up_product, store: store}
+
+    before do
+      @order_1 = Order.new user_id: user.id, store_id: store.id, phone: "111", address: "xxx"
+      @order_1.line_items << build(:line_item, user: user, product: product_1, price: 10)
+      @order_1.line_items << build(:line_item, user: user, product: product_2, price: 20)
+      @order_1.save
+
+
+      @order_2 = Order.new user_id: user.id, store_id: store.id, phone: "111", address: "xxx"
+      @order_2.line_items << build(:line_item, user: user, product: product_1, price: 10)
+      @order_2.line_items << build(:line_item, user: user, product: product_2, price: 20)
+      @order_2.save
+
+
+      @order_3 = Order.new user_id: user.id, store_id: store.id, phone: "111", address: "xxx"
+      @order_3.line_items << build(:line_item, user: user, product: product_1, price: 10)
+      @order_3.line_items << build(:line_item, user: user, product: product_2, price: 20)
+      @order_3.created_at = (Time.now - 10.year)
+      @order_3.save
+
+      @order_1.accept
+      @order_1.deliver
+
+      @order_2.accept
+      @order_2.deliver
+
+      @order_3.accept
+      @order_3.deliver
+    end
+
+
+
+    it "should got 60" do
+      store.reload
+      store.this_month_turnover.should == 60
+    end
+  end
 end
