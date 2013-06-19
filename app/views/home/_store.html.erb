@@ -16,9 +16,14 @@
           <p class="center">休息中</p>
         </div>
       <% end %>
+
       <div class="free_deliver_price">
-        <i class="icon-shopping-cart"></i> <%= store.free_deliver_price.to_i%> 元
-      </div>
+        <i class="icon-shopping-cart"></i> <%= "#{store.free_deliver_price.to_i} 元"%>
+    </div>
+
+    <div id="deliver_area_<%= store.id%>" class="pull-right deliver_area">
+      <a>送货范围</a>
+    </div>
     </div>
   </td>
 
@@ -39,11 +44,18 @@
 </div>
 
 <script>
+  
+  $("#deliver_area_<%= store.id%>").popover({
+    html:true,
+    content:"<%= store.deliver_area.html_safe if store.deliver_area.present? %>",
+    trigger: "hover",
+    container: 'body',
+  });
+
   $(document).ready(function(){
     $(".store_item_<%= store.id%>").click(function(){
       window.location = "<%= store_path(store)%>";
     });
-    
   });
 </script>
 </tr>

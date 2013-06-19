@@ -20,7 +20,8 @@
       <% end %>
 
       <p class="center">
-        <%= @store.description.html_safe %>
+        <%= @store.description.html_safe if @store.description.present?%>
+        <p> 配送范围:<%= @store.deliver_area.html_safe if @store.deliver_area.present?%> </p>
         <br/>  起送价:<%= @store.free_deliver_price %>
     </p>
   </div>

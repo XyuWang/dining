@@ -1,5 +1,5 @@
 class Store < ActiveRecord::Base
-  attr_accessible :name, :description, :state, :user_id, :free_deliver_price, :avatar, :turnover, :receive_sms_notify
+  attr_accessible :name, :description, :state, :user_id, :free_deliver_price, :avatar, :turnover, :receive_sms_notify, :deliver_area
 
   validates :name, :description, :user, :free_deliver_price, presence: true
   validates :free_deliver_price, numericality: {greater_than_or_equal_to: 0}

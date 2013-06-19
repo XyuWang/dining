@@ -19,12 +19,14 @@
         <%= image_tag @store.avatar.url(:thumb)%>
       </div>
       <p>
-        <br/>商店名称: <%= @store.name %>
+        <br/><%= @store.name %>
     </p>
     <p>
-      商店描述:<br />
+      <br />
       <%= @store.description.html_safe if @store.description.present?%>
     </p>
+
+    <p> 配送范围:<%= @store.deliver_area.html_safe if @store.deliver_area.present?%> </p>
   </div>
   <div class="span8">
 
@@ -59,6 +61,8 @@
       商店头像:<%= f.file_field :avatar%>
     <br />
     商店描述<br/><%= f.kindeditor :description, :window_onload => true, placeholder: "将显示在商店左边", required: true%>
+  <br/>
+  配送范围<br/><%= f.text_area :deliver_area, placeholder: "请填写配送范围", required: true%>
   <br/>
   起送价:
       <div class="input-prepend input-append">
