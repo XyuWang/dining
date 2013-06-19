@@ -25,7 +25,7 @@ class SMS
 
     status = res.body.to_i
     if status == 100
-      return "您的剩余短信数量为#{res.body[res.body.index("||") + 2, res.body.size]}条"
+      return "#{res.body[res.body.index("||") + 2, res.body.size]}"
     else
       return "查询失败..."
     end

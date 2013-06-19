@@ -4,6 +4,9 @@ describe Order do
   it {should have_many :line_items}
   it {should belong_to :user}
   it {should belong_to :store}
+  before do
+    SMS.stub_chain(:new, :send) {"100"}
+  end
 
   describe "#create" do
     before do
@@ -151,6 +154,47 @@ describe Order do
           product_1.reload
           product_1.sales_volume.should == 1
         end
+      end
+    end
+  end
+
+  describe "notify storer" do
+    let!(:user) {create :user}
+    let!(:store) {create :open_store, free_deliver_price: 10}
+    let!(:product_1) {create :up_product, store: store}
+    let!(:product_2) {create :up_product, store: store}
+
+    before do
+      @order = Order.new user_id: user.id, store_id: store.id, phone: "111", address: "xxx"
+      @order.line_items << build(:line_item, user: user, product: product_1, price: 10)
+      @order.line_items << build(:line_item, user: user, product: product_2, price: 20)
+
+    end
+
+
+    context "receive notify" do
+      before do
+        store.update_attributes(:receive_sms_notify => true)
+      end
+
+      it "should notify storer"do
+        sms = double(:sms)
+        SMS.stub(:new) {sms}
+        sms.should_receive(:send)
+        @order.save
+      end
+    end
+
+    context "not receive notify" do
+      before do
+        store.update_attributes(:receive_sms_notify => false)
+      end
+
+      it "should not notify storer"do
+        sms = double(:sms)
+        SMS.stub(:new) {sms}
+        sms.should_not_receive(:send)
+        @order.save
       end
     end
   end

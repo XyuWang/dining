@@ -36,10 +36,18 @@ class Order < ActiveRecord::Base
   has_many :line_items
 
   before_create :set_total_price
+  after_create :notify_storer
 
   private
   def set_total_price
     self.total_price = OrderDomain.get_total_price self
+  end
+
+  def notify_storer
+    if self.store.receive_sms_notify?
+      content = "有#{total_price}元订单下达，请尽快接受，详寻官网 「吃货0秒」"
+      SMS.new.send(self.store.user.phone, content)
+    end
   end
 
   def after_deliver
@@ -55,7 +63,7 @@ class Order < ActiveRecord::Base
   end
 
   def after_accepted
-    content = "你好，您预订的 #{line_items.map(&:product_title).join(" ")},总计#{total_price}元，商家已经开始制作，请稍等，请在此期间保持手机畅通 ^_^ 「吃货0秒」"
+    content = "您预订的 #{line_items.map(&:product_title).join(" ")},总计#{total_price}元，商家已经开始制作，稍等哦，在此期间请保持手机畅通 ^_^ 「吃货0秒」"
 
     self.sms_status = SMS.new.send(phone, content)
     self.save
