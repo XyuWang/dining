@@ -15,6 +15,12 @@ Dining::Application.routes.draw do
   get "admin", to: "admin::admin#show"
   namespace "admin" do
     resources :storers, only: [:index, :create, :destroy]
+    resources :products do
+      member do
+        put :up, to: "products#up"
+        put :down, to: "products#down"
+      end
+    end
   end
 
   namespace "storer" do

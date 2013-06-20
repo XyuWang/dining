@@ -1,5 +1,15 @@
 <div class="container">
-  <%= link_to "商家列表", admin_storers_path%>
+  
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <a href="<%= admin_path%>">网站状态</a>
+    </li>
+    <li><a href="<%= admin_storers_path%>">商家列表</a></li>
+    <li><a href="<%= admin_products_path%>">产品列表</a></li>
+  </ul>
+
+
+
   <p>
     当前短信剩余量: <%= SMS.new.balance%>
 </p>

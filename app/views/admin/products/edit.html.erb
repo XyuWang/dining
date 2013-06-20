@@ -1,10 +1,14 @@
 <div class="container">
   <br />
-  <%= form_for @store.products.new, url: storer_products_path  do |f|%>
+  <%= form_for @product, url: admin_product_path(@product) do |f|%>
     <span class="help-inline">标题</span>
     <%= f.text_field :title, placeholder: "请输入商品标题"%><br/>
+
+    <span class="help-inline">商家ID</span>
+    <%= f.text_field :store_id, placeholder: "请输入商家ID"%><br/>
+
     <span class="help-inline">描述</span>
-    <%= f.kindeditor :description, :window_onload => true, placeholder: "请输入商品描述"%> <br />
+    <%= f.text_area :description, placeholder: "请输入商品描述"%><br/>
     商品图片:<%= f.file_field :avatar%> <br />
     <div class="input-prepend input-append">
       <span class="add-on">¥</span>
