@@ -17,7 +17,7 @@ class Store < ActiveRecord::Base
   belongs_to :user
   has_many :products
   has_many :orders
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :avatar, :styles => { :medium => "100x100>", :thumb => "50x50>" }, :default_url => "/images/:style/missing.png"
 
   def can_ordered?
     opened?
