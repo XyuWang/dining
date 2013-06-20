@@ -2,7 +2,7 @@
   <div class="store " id="store_<%= store.id %>">
   <td class="span2">
     <div class="store_item store_item_<%= store.id%>">
-      <%= image_tag store.avatar.url%>
+      <%= image_tag store.avatar(:medium), size: "100x100" %>
 
       <div class="store_name">
         <%= store.name %> <br/><br/>
