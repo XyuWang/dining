@@ -1,7 +1,6 @@
-<td class="span2">
-  <div class="product_item">
+  <div class="store_product_item">
     <div class="product_avatar">
-      <%= image_tag product.avatar(:medium), size: "200x150" %>
+      <%= image_tag product.avatar(:medium), size: "200x150", class:"img-rounded"%>
     </div>
     <div class="product_title center">
       <%= product.title %>
@@ -21,7 +20,6 @@
       <% end %>
     </div>
   </div>
-</td>
 <script>
   $(document).ready(function(){
     $("#product_<%=product.id%>").click(function(){

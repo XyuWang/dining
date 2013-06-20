@@ -1,0 +1,21 @@
+$("#cart_field").remove();
+
+$("#cart_number").before('<li id="cart_field"><a href="#cart_modal" id="cart" role="button" data-toggle="modal">购物车</a> </li>');
+
+$("#cart").click(function(){
+    $.ajax({
+      type: "GET",
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      url: "/cart/",
+      data: {}
+      })
+});
+
+$('#cart').grumble({
+  text: "一次只能选购一个商家的产品哦， 如果要选购不同卖家的产品，请先清空购物车哈 ^_^",
+  angle: 200,
+  distance: 2,
+  showAfter: 0,
+  hideAfter: 4000,
+});
+

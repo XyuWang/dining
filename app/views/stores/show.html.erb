@@ -3,8 +3,7 @@
     <div class="span2">
       <br />
       <br />
-      <%= image_tag @store.avatar.url, class: "center"%>
-
+      <%= image_tag @store.avatar(:medium), size: "100x100", class: "center"%>
       <div class="store_name">
         <%= @store.name %>
       </div>
@@ -25,9 +24,14 @@
         <br/>  起送价:<%= @store.free_deliver_price %>
     </p>
   </div>
-    <div class="span10">
-      <% @store.products.up.each do |product|%>
+  <div class="span10">
+      <% @store.products.up.each_with_index do |product, index|%>
+        <% if (index % 4) == 0 %>
+          <br />
+        <% end %>
+
         <%= render "product", product: product%>
+
       <% end %>
     </div>
   </div>

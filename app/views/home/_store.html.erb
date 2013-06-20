@@ -27,11 +27,11 @@
     </div>
   </td>
 
-  <% store.products.up.limit(3).each do |product|%>
+  <% store.products.up.limit(4).each do |product|%>
     <%= render "product", product: product%>
   <% end %>
 
-  <% if store.products.up.count > 3  %>
+  <% if store.products.up.count > 4  %>
     <td class="span1">
       <div class="more_products store_item_<%= store.id%>">
         <%= link_to "更多", stores_path(store) %><br />

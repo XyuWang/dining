@@ -12,7 +12,7 @@ function refresh_total_price(){
 
       $("#total_price").text(total_price);
       if((total_price - free_deliver_price)>= 0){
-        $("#checkout").val("点我下单啦");
+        $("#checkout").val("下单,确认购买");
         $("#checkout").removeAttr('disabled');
         }else{
         $("#checkout").val("还差"+ (free_deliver_price - total_price).toString() + "元就可以下单咯");

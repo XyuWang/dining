@@ -75,7 +75,7 @@ class CartController < ApplicationController
     @cart.store_id = nil if @cart.line_items.blank?
 
     if @cart.store_id && @cart.store_id != @product.store.id
-      redirect_to :back, alert: "一次只能选购一个商家的产品哦， 如果要选购不同卖家的产品，请先清空购物车哈 ^_^"
+      render "_error.js.erb"
     else
       @cart.store_id = @product.store.id
     end

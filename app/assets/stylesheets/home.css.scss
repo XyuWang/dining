@@ -5,11 +5,8 @@
 .store_item
 {
   padding: 20px 20px 20px 23px;
-  border-right: 1px solid #DDD;
-  border-bottom: 1px solid #DDD;
-  border-top: 1px solid #DDD;
-  width: 100px;
-  height: 180px;
+  width: 60px;
+  height: 100px;
   position: relative;
   word-break: break-all;
   display: table-cell;
@@ -20,7 +17,7 @@ background-color: #eff8ff;
 }
 .free_deliver_price{
 position: relative;
-right: -50px;
+right: -20px;
 bottom: -15px;
 }
 .deliver_area{
@@ -37,10 +34,7 @@ font-size:20px;
 .product_item
 {
   padding: 20px 20px 20px 23px;
-  border-right: 1px solid #DDD;
-  border-bottom: 1px solid #DDD;
-  border-top: 1px solid #DDD;
-  width: 193px;
+  width: 120px;
   position: relative;
   word-break: break-all;
   display: table-cell;
@@ -70,9 +64,6 @@ background-color: #eff8ff;
 .more_products
 {
   padding: 20px 20px 20px 23px;
-  border-right: 1px solid #DDD;
-  border-bottom: 1px solid #DDD;
-  border-top: 1px solid #DDD;
   width: 40px;
   position: relative;
   word-break: break-all;
@@ -88,7 +79,7 @@ body {
   margin:0;
   padding:0;
   height:100%;
-  background: url("background.jpg") center;
+  background: url("background.jpg") center no-repeat;
 }
 .content {
   padding:10px;
@@ -109,4 +100,14 @@ body {
 
 .more_products > a {
   color: red ;
+}
+
+.store_product_item
+{
+  padding: 20px 20px 20px 23px;
+  width: 160px;
+  position: relative;
+  word-break: break-all;
+  display: table-cell;
+  vertical-align: inherit;
 }
