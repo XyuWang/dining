@@ -1,6 +1,8 @@
 class Store < ActiveRecord::Base
   attr_accessible :name, :description, :state, :user_id, :free_deliver_price, :avatar, :turnover, :receive_sms_notify, :deliver_area
 
+  default_scope order('value DESC')
+
   validates :name, :description, :user, :free_deliver_price, presence: true
   validates :free_deliver_price, numericality: {greater_than_or_equal_to: 0}
 
@@ -19,6 +21,9 @@ class Store < ActiveRecord::Base
   has_many :orders
   has_attached_file :avatar, :styles => { :medium => "100x100>", :thumb => "50x50>" }, :default_url => "/images/:style/missing.png"
 
+  before_save :calculate_value
+
+
   def can_ordered?
     opened?
   end
@@ -35,5 +40,12 @@ class Store < ActiveRecord::Base
 
   def receive_sms_notify?
     self.receive_sms_notify
+  end
+  private
+  def calculate_value
+    value = self.products.count
+
+    value += 100 if self.opened?
+    self.value = value
   end
 end

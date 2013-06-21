@@ -126,4 +126,13 @@ describe Store do
       store.this_month_turnover.should == 60
     end
   end
+
+  describe "default_order" do
+      let!(:open_store) {create :open_store}
+      let!(:closed_store) {create :closed_store}
+
+      it "open store should before close store" do
+        Store.all.should == [open_store, closed_store]
+      end
+    end
 end

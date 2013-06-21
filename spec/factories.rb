@@ -32,6 +32,14 @@ FactoryGirl.define do
     association :user,  factory: :user
   end
 
+  factory :closed_store, class: "Store" do
+    name "name"
+    description "description"
+    free_deliver_price 30.0
+    state "closed"
+    association :user,  factory: :user
+  end
+
   factory :store do
     name "name"
     description "description"
