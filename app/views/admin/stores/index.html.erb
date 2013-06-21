@@ -1,0 +1,41 @@
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li>
+      <a href="<%= admin_path%>">网站状态</a>
+    </li>
+    <li><a href="<%= admin_storers_path%>">商家列表</a></li>
+    <li class="active"><a href="<%= admin_stores_path%>">商店列表</a></li>
+    <li><a href="<%= admin_products_path%>">产品列表</a></li>
+  </ul>
+  
+  <table class="table">
+    <caption>商店列表</caption>
+    <tr>
+      <th>名称</th>
+      <th>成交额</th>
+      <th>商品数</th>
+      <th>状态</th>
+      <th></th>
+      <th>编辑</th>
+    </tr>
+    <% @stores.each do |store|%>
+      <% if store.opened?%>
+        <tr class="success">
+        <% else %>
+          <tr class="error">
+          <% end %>
+        <td><%= store.name %></td>
+        <td><%= store.turnover%></td>
+        <td><%= store.products.count %></td>
+        <td><%= store.state%></td>
+      <% if store.opened?%>
+        <td>关闭&nbsp; &nbsp; <%= link_to "关闭", close_admin_store_path(store), method: :put, class: "btn btn-danger"%></td>
+        <% else %>
+        <td>营业&nbsp; &nbsp; <%= link_to "营业", open_admin_store_path(store), method: :put, class: "btn btn-success"%></td>
+      <% end %>
+        <td><%= link_to "编辑", edit_admin_store_path(store), class: "btn"%></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+

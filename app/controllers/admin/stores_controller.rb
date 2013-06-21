@@ -7,15 +7,22 @@ class Admin::StoresController < ApplicationController
     @stores = Store.all
   end
 
-  def create
+  def edit
+    @store = Store.find params[:id]
   end
 
-  def show
+  def open
+    @store = Store.find params[:id]
 
+    @store.opening
+    redirect_to :back
   end
 
-  def destroy
+  def close
+    @store = Store.find params[:id]
 
+    @store.close
+    redirect_to :back
   end
 
   private

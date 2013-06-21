@@ -1,0 +1,30 @@
+<div class="container"> 
+  <h3 >编辑商店</h3>
+  <%= form_for @store, url: storer_path, method: :put do |f|%>
+    商店名称<%= f.text_field :name, placeholder: "商店名称", required: true %><br/>
+    商店头像:<%= f.file_field :avatar%>
+  <br />
+  商店描述<br/><%= f.kindeditor :description, :window_onload => true, placeholder: "将显示在商店左边", required: true%>
+<br/>
+配送范围<br/><%= f.text_area :deliver_area, placeholder: "请填写配送范围", required: true%>
+  <br/>
+  达到多少钱可以免费送餐:
+  <div class="input-prepend input-append">
+    <span class="add-on">¥</span>
+    <%= f.text_field :free_deliver_price, placeholder: "输入达到多少钱可以免费送餐", required: true %>
+  </div>
+
+  <br />
+  <label class="control-label" for="notification1">是否接受短信提醒</label>
+  <div class="controls">
+    <div class="switch" data-on-label="<i class='icon-ok icon-white'></i>" data-off-label="<i class='icon-remove'></i>">
+      <%= f.check_box :receive_sms_notify %>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+    <%= f.submit "确定", class:"btn btn-primary"%>
+  </div>
+<% end %>
+</div>

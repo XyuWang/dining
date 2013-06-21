@@ -1,5 +1,5 @@
 class Store < ActiveRecord::Base
-  attr_accessible :name, :description, :state, :user_id, :free_deliver_price, :avatar, :turnover, :receive_sms_notify, :deliver_area
+  attr_accessible :name, :description, :state, :user_id, :free_deliver_price, :avatar, :receive_sms_notify, :deliver_area
 
   default_scope order('value DESC')
 
