@@ -21,7 +21,7 @@
           <%= link_to "来一份", new_user_session_path, class: "btn btn-small pull-right"%>
         <% end %>
       <% else %>
-        <%= button_to "休息中", "", class: "btn btn-small pull-right", disabled: true%>
+        <%= link_to "休息中", "javascript:void(0)", class: "btn btn-small pull-right", disabled: true%>
       <% end %>
     </div>
   </div>
