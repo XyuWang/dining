@@ -9,7 +9,7 @@
 
 
     <span class="help-inline">描述</span>
-    <%= f.text_area :description, placeholder: "请输入商品描述"%><br/>
+    <%= f.kindeditor :description, :window_onload => true, placeholder: "请输入商品描述"%><br />
     商品图片:<%= f.file_field :avatar%> <br />
     <div class="input-prepend input-append">
       <span class="add-on">¥</span>
