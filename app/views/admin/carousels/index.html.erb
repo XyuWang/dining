@@ -1,0 +1,33 @@
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li>
+      <a href="<%= admin_path%>">网站状态</a>
+    </li>
+    <li><a href="<%= admin_storers_path%>">商家列表</a></li>
+    <li><a href="<%= admin_stores_path%>">商店列表</a></li>
+    <li><a href="<%= admin_products_path%>">产品列表</a></li>
+    <li class="active"><a href="<%= admin_carousels_path%>">轮播列表</a></li>
+  </ul>
+
+
+  <%= link_to "增加轮播", new_admin_carousel_path, class: "btn btn-primary" %>
+  <table class="table">
+    <caption>轮播列表</caption>
+    <tr>
+      <th>信息</th>
+      <th>序号</th>
+      <th>图片</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <% @carousels.each do |carousel|%>
+      <tr>
+        <td><%= carousel.message %></td>
+        <td><%= carousel.sequence %></td>
+        <td><%= image_tag carousel.image.url %></td>
+        <td><%= link_to "编辑", edit_admin_carousel_path(carousel), class: "btn"%></td>
+        <td><%= link_to "删除", admin_carousel_path(carousel), method: :delete,  class: "btn btn-danger"%></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

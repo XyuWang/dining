@@ -1,4 +1,7 @@
 <div class="container">
+  <% if @carousels.present? %>
+    <%= render "carousels"%>
+  <% end %>
   <div class="table">
     <% @stores.each do |store| %>
         <%= render "store", store: store%>

@@ -1,0 +1,14 @@
+<div class="container">
+  <br />
+  <%= form_for @carousel, url: admin_carousel_path  do |f|%>
+    <span class="help-inline">message</span>
+    <%= f.text_field :message, placeholder: "信息"%><br/>
+
+    <span class="help-inline">排序</span>
+    <%= f.text_field :sequence, placeholder: "请输入序号"%><br/>
+
+
+    商品图片:<%= f.file_field :image%> <br />
+    <%= f.submit "提交", class:"btn btn-large btn-primary"%>
+  <% end %>
+</div>

@@ -1,0 +1,32 @@
+<div>
+  <div id="Carousel" class="carousel slide" data-interval='2000'>
+    <ol class="carousel-indicators">
+      <% @carousels.each_with_index do |carousel, index|%>
+        <% if index == 0 %>
+          <li data-target="#Carousel" data-slide-to="<%= carousel.sequence%>" class="active"></li>
+        <% else %>
+          <li data-target="#Carousel" data-slide-to="<%= carousel.sequence%>"></li>
+        <% end %>
+      <% end %>
+    </ol>
+    <!-- Carousel items -->
+    <div class="carousel-inner">
+      <% @carousels.each_with_index do |carousel, index|%>
+        <% if index == 0%>
+          <div class="active item"><%= image_tag carousel.image.url%></div>
+        <% else %>
+          <div class="item"><%= image_tag carousel.image(:medium), size: "930x300"%></div>
+        <% end %>
+      <% end %>
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#Carousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#Carousel" data-slide="next">&rsaquo;</a>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    $('.carousel').carousel();
+  });
+</script>

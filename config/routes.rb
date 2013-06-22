@@ -27,6 +27,7 @@ Dining::Application.routes.draw do
         put :down, to: "products#down"
       end
     end
+    resources :carousels
   end
 
   namespace "storer" do
