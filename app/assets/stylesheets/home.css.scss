@@ -1,6 +1,8 @@
+
 .store
 {
   margin: 20px 20px 20px 20px;
+  border: 1px solid #DDD;
 }
 .store_item
 {
@@ -13,7 +15,9 @@
   vertical-align: inherit;
 }
 .store_item:hover {
-background-color: #eff8ff;
+//background-color: #eff8ff;
+background-color: white;
+
 }
 .free_deliver_price{
 position: relative;
@@ -41,7 +45,8 @@ font-size:20px;
   vertical-align: inherit;
 }
 .product_item:hover {
-background-color: #eff8ff;
+//background-color: #eff8ff;
+background-color: white;
 }
 .product_price {color:red;}
 .product_title {font-size:14px;}
@@ -67,7 +72,6 @@ background-color: #eff8ff;
   width: 40px;
   border-top: 1px solid #DDD;
   border-left: 1px solid #DDD;
-  border-right: 1px solid #DDD;
   border-bottom: 1px solid #DDD;
   position: relative;
   word-break: break-all;
@@ -75,7 +79,8 @@ background-color: #eff8ff;
   vertical-align: inherit;
 }
 .more_products:hover {
-background-color: #eff8ff;
+//background-color: #eff8ff;
+background-color: white;
 }
 
 html,
@@ -114,4 +119,7 @@ body {
   word-break: break-all;
   display: table-cell;
   vertical-align: inherit;
+}
+.backgroundcolor{
+  background-color: #E9F6FE;
 }
