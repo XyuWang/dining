@@ -31,4 +31,14 @@ describe Product do
     @product = create :product
     @product.destroy.should == false
   end
+
+  describe "after save" do
+    let!(:product) {create :product}
+
+    it "should calculate_store_value" do
+      product.should_receive(:calculate_store_value)
+
+      product.save
+    end
+  end
 end

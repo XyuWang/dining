@@ -41,7 +41,7 @@ class Store < ActiveRecord::Base
   def receive_sms_notify?
     self.receive_sms_notify
   end
-  private
+
   def calculate_value
     value = self.products.count
 

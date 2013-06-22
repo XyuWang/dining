@@ -21,6 +21,7 @@ class Product < ActiveRecord::Base
   belongs_to :store
   has_many :line_items
   has_many :comments
+  after_save :calculate_store_value
   before_destroy :decline_destroy
 
   has_attached_file :avatar, :styles => { :large => "500x500>", :medium => "200x150>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
@@ -32,5 +33,11 @@ class Product < ActiveRecord::Base
 private
   def decline_destroy
     false
+  end
+
+  def calculate_store_value
+    if self.store.present?
+      self.store.save
+    end
   end
 end
