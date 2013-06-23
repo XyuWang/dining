@@ -19,6 +19,8 @@ zh-CN:
       invalid_token: '认证码无效.'
       timeout: '您已登录超时，请重新登录.'
       inactive: '您还没有激活帐户.'
+      user:
+        not_found_in_database: "帐号输入错误。找不到用户"
     sessions:
       user:
         signed_in: '登录成功啦，开始你的美食之旅吧~.'

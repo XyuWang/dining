@@ -14,9 +14,15 @@
     <div class="product_info">
       <a href="#product_modal" role="button" class="btn btn-small product_detail" data-toggle="modal" id="product_<%= product.id%>">详情</a>
       <% if product.store.can_ordered? %>
+
+        <% if user_signed_in? %>
         <%= link_to "来一份", cart_path(product_id: product), class: "btn btn-small pull-right", method: :post, remote: true%>
+        <% else%>
+          <%= link_to "来一份", new_user_session_path, class: "btn btn-small pull-right"%>
+        <% end %>
+
       <% else %>
-        <%= button_to "休息中", "", class: "btn btn-small pull-right", disabled: true%>
+        <%= link_to "休息中", "javascript:void(0)", class: "btn btn-small pull-right", disabled: true%>
       <% end %>
     </div>
   </div>
