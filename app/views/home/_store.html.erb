@@ -31,9 +31,11 @@
     <%= render "product", product: product%>
   <% end %>
 
-  <% if store.products.up.count > 4  %>
+  <% products_count = store.products.up.count%>
+  <% if products_count > 4  %>
       <div class="more_products store_item_<%= store.id%>">
-        <%= link_to "更多", store_path(store) %><br />
+        <%= link_to "还有#{products_count  -  4}种商品哦", store_path(store) %><br />
+        <%= link_to "点我查看更多", store_path(store) %><br />
         <%= link_to ">>>", store_path(store) %><br />
       </div>
   <% end %>
