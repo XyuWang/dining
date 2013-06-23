@@ -31,8 +31,16 @@
     $("#product_<%=product.id%>").click(function(){
       $('#product_modal_body').load('<%= product_path(product)%>');
 
-      $("#product_modal_submit").replaceWith('<%= link_to "来一份", cart_path(product_id: product), id:"product_modal_submit", class: "btn btn-primary", method: :post, remote: true%>');
 
+      <% if product.can_be_ordered? %>
+        <% if user_signed_in? %>
+      $("#product_modal_submit").replaceWith('<%= link_to "来一份", cart_path(product_id: product), id:"product_modal_submit", class: "btn btn-primary", method: :post, remote: true%>');
+        <% else%>
+          $("#product_modal_submit").replaceWith('<%= link_to "来一份", new_user_session_path, id:"product_modal_submit", class: "btn btn-primary"%>');
+        <% end %>
+      <% else %>
+          $("#product_modal_submit").replaceWith('<%= link_to "休息中", "javascript:void(0)", id:"product_modal_submit", class: "btn btn-primary", disabled: true%>');
+      <% end %>
     });
   });
 </script>
