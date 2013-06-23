@@ -5,7 +5,7 @@ var total_price = <%= CartDomain.get_total_price(current_user)%>
     var free_deliver_price =  <%= @cart.store.free_deliver_price %>
 
       if((total_price - free_deliver_price)>= 0){
-        message = "+1 总价" + total_price +"元, 已经可以下单啦"
+        message = "+1 总价" + total_price +"元, 已经可以下单啦 点我下单~"
       }else{
         message = "+1 还差" + (free_deliver_price- total_price) +"元, 就可以下单啦"
       }
