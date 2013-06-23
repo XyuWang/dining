@@ -78,7 +78,7 @@ class Order < ActiveRecord::Base
   def ensure_can_be_ordered
     line_items.each do |line_item|
       if line_item.product.can_be_ordered? == false
-        errors.add :base, "不能购买#{line_item.product.title}"
+        errors.add :base, "不能购买#{line_item.product.title}, 卖家已休息，不接受新订单"
       end
     end
   end
