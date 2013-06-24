@@ -5,6 +5,7 @@
       <th>订单编号</th>
       <td>下单时间</th>
       <th>产品</th>
+      <th>留言</th>
       <th>总价</th>
       <th>状态</th>
     </tr>
@@ -14,6 +15,7 @@
           <td class="span1"><%= order.id %></td>
           <td class="span2"><%= order.created_at.localtime.strftime "%F %T" %></td>
           <td><%= render "order", order: order %></td>
+          <td><%= order.message %></td>
           <td class="span1"><%= order.total_price%></td>
           <td>已下单,等待商家接收订单</td>
           <td></td>
@@ -23,6 +25,7 @@
           <td class="span1"><%= order.id %></td>
           <td class="span2"><%= order.created_at.localtime.strftime "%F %T" %></td>
           <td><%= render "order", order: order %></td>
+          <td><%= order.message %></td>
           <td class="span1"><%= order.total_price%></td>
           <td>订单已关闭</td>
           <td></td>
@@ -32,6 +35,7 @@
           <td class="span1"><%= order.id %></td>
           <td class="span2"><%= order.created_at.localtime.strftime "%F %T" %></td>
           <td><%= render "order", order: order %></td>
+          <td><%= order.message %></td>
           <td class="span1"><%= order.total_price%></td>
           <td>商家已经接受订单，正在制作中...</td>
           <td></td>
@@ -41,6 +45,7 @@
           <td class="span1"><%= order.id %></td>
           <td class="span2"><%= order.created_at.localtime.strftime "%F %T" %></td>
           <td><%= render "order", order: order %></td>
+          <td><%= order.message %></td>
           <td class="span1"><%= order.total_price%></td>
           <td>商家已经开始配送...</td>
           <td class="span1"><%= link_to "评论", new_order_comment_path(order)%></td>
