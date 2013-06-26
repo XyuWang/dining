@@ -11,6 +11,19 @@ class Admin::StoresController < ApplicationController
     @store = Store.find params[:id]
   end
 
+  def update
+    @store = Store.find params[:id]
+    @store.update_attributes params[:store]
+
+    if @store.save
+      redirect_to admin_stores_path, notice: "成功"
+    else
+      redirect_to :back, alert: @store.errors.full_messages.to_sentence
+    end
+  end
+
+
+
   def open
     @store = Store.find params[:id]
 

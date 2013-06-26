@@ -1,5 +1,5 @@
 class Store < ActiveRecord::Base
-  attr_accessible :name, :description, :state, :user_id, :free_deliver_price, :avatar, :receive_sms_notify, :deliver_area
+  attr_accessible :name, :description, :state, :user_id, :free_deliver_price, :avatar, :receive_sms_notify, :deliver_area, :extra_value
 
   default_scope order('value DESC')
 
@@ -43,9 +43,11 @@ class Store < ActiveRecord::Base
   end
 
   def calculate_value
-    value = self.products.count
+    value = self.products.up.count
 
     value += 100 if self.opened?
+
+    value += extra_value
     self.value = value
   end
 end

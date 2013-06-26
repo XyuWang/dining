@@ -10,7 +10,9 @@ class User < ActiveRecord::Base
   include RoleModel
   roles :admin, :storer
 
-  scope :storers, select { |user| user.storer? }
+  def self.storers
+    select { |user| user.storer? }
+  end
 
   has_one :store
   has_one :cart
