@@ -12,7 +12,7 @@ class Admin::StorersController < ApplicationController
     user.roles << :storer
 
     if user.save
-      redirect_to :back, notice: "创建商家成功"
+      redirect_to admin_storers_path, notice: "创建商家成功"
     else
       redirect_to :back, alert: user.errors.full_messages.to_sentence
     end
@@ -26,11 +26,10 @@ class Admin::StorersController < ApplicationController
     user = User.find params[:id]
 
     roles = user.roles
-    roles.delete :storer
-    user.roles = roles
+    user.roles = roles.delete :storer
 
     if user.save
-      redirect_to :back, notice: "删除商家成功"
+      redirect_to admin_storers_path, notice: "删除商家成功"
     else
       redirect_to :back, alert: user.errors.full_messages.to_sentence
     end

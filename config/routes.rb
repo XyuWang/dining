@@ -15,7 +15,7 @@ Dining::Application.routes.draw do
   get "admin", to: "admin::admin#show"
   namespace "admin" do
     resources :storers, only: [:index, :create, :destroy]
-    resources :stores, only: [:edit, :index] do
+    resources :stores, only: [:edit, :index, :update] do
       member do
         put :open
         put :close

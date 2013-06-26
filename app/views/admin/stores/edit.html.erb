@@ -1,7 +1,8 @@
 <div class="container"> 
   <h3 >编辑商店</h3>
-  <%= form_for @store, url: storer_path, method: :put do |f|%>
+  <%= form_for @store, url: admin_store_path(@store), method: :put do |f|%>
     商店名称<%= f.text_field :name, placeholder: "商店名称", required: true %><br/>
+ 附加价值   <%= f.text_field :extra_value, placeholder: "附加价值"%><br/>
     商店头像:<%= f.file_field :avatar%>
   <br />
   商店描述<br/><%= f.kindeditor :description, :window_onload => true, placeholder: "将显示在商店左边", required: true%>
