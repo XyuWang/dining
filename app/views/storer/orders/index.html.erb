@@ -61,11 +61,11 @@
         <% else order.closed? %>
           <tr class="error">
             <td><%= order.id %></td>
-            <td><%= order.line_items.count%></td>
+            <td><%= render "order", order: order %></td>
             <td><%= order.total_price %></td>
+            <td><%= render "contact", order: order %></td>
             <td><%= order.message %></td>
             <td>已关闭</td>
-            <td></td>
             <td></td>
             <td></td>
           </tr>
