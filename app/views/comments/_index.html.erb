@@ -7,22 +7,26 @@
   </li>
 </ul>
 
-<table class="table">
-  <tr>
-    <th>内容</th>
-    <th>用户</th>
-  </tr>
-  <% @comments.each do |comment|%>
+<% if @comments.present? %>
+  <table class="table">
     <tr>
-      <td><%= comment.context %></td>
-      <% if comment.user.name.present? %>
-        <td><%= comment.user.name[0] %>**</td>
-      <% else %>
-        <td>匿名</td>
-      <% end %>
+      <th>内容</th>
+      <th>用户</th>
     </tr>
-  <% end %>
-</table>
+    <% @comments.each do |comment|%>
+      <tr>
+        <td><%= comment.context %></td>
+        <% if comment.user.name.present? %>
+          <td><%= comment.user.name[0] %>**</td>
+        <% else %>
+          <td>匿名</td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>还没有评论..</p>
+<% end %>
 
   <%= paginate @comments, remote: true %>
 

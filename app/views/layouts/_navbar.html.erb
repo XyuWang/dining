@@ -17,25 +17,16 @@
         </div><!--/.nav-collapse -->
         <div class="container">
           <ul class="nav pull-right">
+
             <% if user_signed_in? %>
-              <% if current_user.has_any_role? :admin, :storer%>
-                <li>
-                  <div class="btn-group">
-                    <a class="btn dropdown-toggle btn-success" data-toggle="dropdown" href="#">
-                      <i class="icon-user icon-white"></i> 管理
-                      <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <% if current_user.storer? %>
-                        <li>  <%= link_to "商家页面   ", storer_path , class:"span"%> </li>
-                      <% end %>
-                      <% if current_user.admin? %>
-                        <li> <%= link_to "管理员页面", admin_path, class:"span" %> </li>
-                      <% end %>
-                    </ul>
-                  </div>
-                </li>
+               <% if current_user.storer? %>
+                <li>  <%= link_to "商家页面   ", storer_path , class:"span"%> </li>
               <% end %>
+
+              <% if current_user.admin? %>
+                <li> <%= link_to "管理员页面", admin_path, class:"span" %> </li>
+              <% end %>
+
               <li id="cart_field">
                 <a href="#cart_modal" id="cart" role="button" data-toggle="modal">购物车</a>
               </li>
