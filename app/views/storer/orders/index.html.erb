@@ -1,3 +1,5 @@
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=B60f0592245e68162ffaf81c72bd1250"></script>
+
 <div class="container">
 
   <ul class="nav nav-tabs">
@@ -73,7 +75,25 @@
       <% end %>
     </table>
     <%= paginate @orders %>
+  </div>
+
+<div id="map" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">路线</h3>
+  </div>
+  <div class="modal-body">
+    <div id="map_body"></div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+  </div>
 </div>
+
+<style type="text/css">
+  #map_body {width: 500px;height: 300px;overflow: hidden;margin:0;}
+</style>
+
 <script>
   $(document).ready(function(){
     setTimeout("window.location='/storer/orders';",60000);

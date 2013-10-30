@@ -1,5 +1,7 @@
 Dining::Application.routes.draw do
 
+  get "maps/show"
+
   resources :products, only: [:index, :show] do
     resources :comments, only: [:index]
   end

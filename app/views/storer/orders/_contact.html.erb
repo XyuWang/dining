@@ -1,3 +1,6 @@
 电话:<%= order.phone%><br />
-地址:<%= order.address%><br />
+地址:<%= order.address%>
+<%= link_to "路线", maps_show_path(start_end: current_user.address, finish_end: order.address), remote: true%>
+<br />
 姓名: <%= order.name%><br />
+

@@ -1,0 +1,6 @@
+var map = new BMap.Map("map_body");
+map.centerAndZoom(new BMap.Point(120.423378,36.076782), 14);
+var driving = new BMap.DrivingRoute(map, {renderOptions:{map: map, autoViewport: true}});
+driving.search("<%= @start_end %>", "<%= @finish_end %>");
+
+$("#map").modal();
