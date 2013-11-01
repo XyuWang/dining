@@ -1,6 +1,6 @@
 #coding: UTF-8
 class Order < ActiveRecord::Base
-  attr_accessible :user_id, :store_id, :phone, :address, :name, :message, :total_price, :sms_status
+  attr_accessible :user_id, :store_id, :phone, :address, :name, :message, :total_price, :sms_status, :store_evaluated
 
   default_scope order('created_at DESC')
 
@@ -37,6 +37,15 @@ class Order < ActiveRecord::Base
 
   before_create :set_total_price
   after_create :notify_storer
+
+  def store_evaluated?
+    store_evaluated
+  end
+
+  def store_evaluated!
+    self.update_attributes(:store_evaluated => true)
+    self.save
+  end
 
   private
   def set_total_price

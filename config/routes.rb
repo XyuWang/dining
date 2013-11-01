@@ -43,10 +43,13 @@ Dining::Application.routes.draw do
         put :down, to: "products#down"
       end
     end
+
     resources :orders, only: [:index, :deliver, :close] do
         put "deliver", to: "orders#deliver"
         put "close", to: "orders#close"
         put "accept", to: "orders#accept"
+        put 'custom_add_credit', to: "credits#add"
+        put 'custom_sub_credit', to: "credits#sub"
     end
   end
 

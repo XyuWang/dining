@@ -1,0 +1,2 @@
+module Storer::CreditsHelper
+end

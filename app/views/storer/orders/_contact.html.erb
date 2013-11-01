@@ -3,4 +3,6 @@
 <%= link_to "路线", maps_show_path(start_end: current_user.address, finish_end: order.address), remote: true%>
 <br />
 姓名: <%= order.name%><br />
+买家信用: <%= order.user.credit%><br />
+
 

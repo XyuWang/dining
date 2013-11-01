@@ -56,9 +56,14 @@
           <td><%= render "contact", order: order %></td>
           <td><%= order.message %></td>
           <td>已发货</td>
+          <% if order.store_evaluated? %>
+          <td>已评价</td>
           <td></td>
-          <td></td>
-        </tr>
+        <% else %>
+          <td><%= link_to "好评", storer_order_custom_add_credit_path(order), class: "btn", method: :put%></td>
+          <td><%= link_to "差评", storer_order_custom_sub_credit_path(order), class: "btn", method: :put%></td>
+        <% end %>
+      </tr>
 
         <% else order.closed? %>
           <tr class="error">
